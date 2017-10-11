@@ -1,9 +1,5 @@
+#Scratch Blocks
 <table dir="ltr">
-    <caption>Scratch Blocks
-      
-      
-      
-    </caption>
     <thead>
 <tr lang="es">
         <th id="source">english</th>
