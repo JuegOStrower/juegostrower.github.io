@@ -1,9 +1,8 @@
-#Scratch Blocks
+# Scratch Blocks
 <table dir="ltr">
     <thead>
-<tr lang="es">
-        <th id="source">english</th>
-        <th id="translation">español</th>
+        <th id="source">English</th>
+        <th id="translation">Español</th>
       </tr>
 </thead>
     <tbody>
