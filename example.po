@@ -1,0 +1,30 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-08-09 22:29+0200\n"
+"PO-Revision-Date: 2016-08-09 17:47+0000\n"
+"Last-Translator: Claudia <CALLA@media.mit.edu>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 2.5.1.1\n"
+"X-POOTLE-MTIME: 1429465634.000000\n"
+
+//BY JUEGOSTROWER
+scratch.mit.edu/users/JuegOStrower
+scratch.mit.edu/projects/115565914
+//
+
+msgid ""
+msgstr ""
+
+//EXAMPLE - delete this //
+msgid "%b and %b"
+msgstr "%b AND AND AND %b"
+
+msgid "About"
+msgstr "Hello"
