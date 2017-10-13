@@ -15,7 +15,7 @@ Now, it's time to install the userscript. Pick what you want [here](/userscripts
 Do you know that you can use the bookmarks to execute actions? Yes, so I made some scripts that can do awesome things in Scratch. I made options to change the thumbnails, set an expanded title and more. You can add the bookmark [here](/bookmarks)
 
 ### The ScratchOn Project
-Usually, when Scratch goes down, nobody can use the Scratch website, but the api is on. So, the ScratchOn page connects to the Scract Api. You can't login, open or edit projects, but you can see, search, open, view, get users and projects data, and more. Tou can access to the ScratchOn Beta cliking [here](/ScratchOn).
+Usually, when Scratch goes down, nobody can use the Scratch website, but the api is on. So, the ScratchOn page connects to the Scract Api. You can't login, open or edit projects, but you can see, search, open, view, get users and projects data, and more. Tou can access to the ScratchOn Beta cliking [here](/scrathon).
 
 ### Unshared project downloader
 I developed a site to download unshared projects, it's in beta now. You can use it [here](/downloader).
