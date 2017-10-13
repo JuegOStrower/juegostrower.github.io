@@ -7,6 +7,10 @@
     <meta name="description" content="JuegOStrower website with the best tools for Scracth!!!"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#157878">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	  <script src="https://cdn.rawgit.com/Stuk/jszip-utils/dfdd631c4249bc495d0c335727ee547702812aa5/dist/jszip-utils.min.js"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2014-11-29/FileSaver.min.js"></script>
+  	<script src="system.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="/assets/css/style.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-82877528-5"></script>
@@ -25,7 +29,11 @@
       <a href="https://scratch.mit.edu/users/JuegOStrower" class="btn">View on Scratch</a>
     </section>
     <section class="main-content">
-      {{ content }}
+      <h3>Download project</h3>
+      	<div id="container">
+	<div id="progress"></div>
+	<input type="text" id="project" value="https://scratch.mit.edu/projects/" placeholder="Project URL" autofocus /><button id="go">Download!</button></div>
+	<pre><code id="log"></code></pre>
       <footer class="site-footer">
         <span class="site-footer-owner">This site is maintained by <a href="https://scratch.mit.edu/users/JuegOStrower">JuegOStrower</a>.</span>
       </footer>
