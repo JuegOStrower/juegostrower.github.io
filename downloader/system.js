@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	$("#project").bind("keydown keyup keypress", function(){
-		$(this).css("color", "white");
+		$(this).css("color", "black");
 		var projectId = $("#project").val();
 		projectId = projectId.replace("://scratch.mit.edu/projects/", "").replace("https", "").replace("http", "");
 		projectId = parseInt(projectId);
@@ -48,7 +48,7 @@ function startDownload(projectId){
 	id = projectId;
 	setProgress(0);
 	jszip = new JSZip();
-	jszip.comment = "Created with MegaApuTurkUltra's Project Downloader";
+	jszip.comment = "Created with JuegOStrower's Project Downloader";
 	$.get("https://cdn.projects.scratch.mit.edu/internalapi/project/"+projectId+"/get/", function(data){
 		setProgress(10);
 		logMessage("Loaded JSON");
