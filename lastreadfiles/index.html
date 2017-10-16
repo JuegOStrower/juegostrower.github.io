@@ -1,0 +1,16 @@
+<html>
+<head>
+<script>
+function gettxt() {
+var xmlHttp = new XMLHttpRequest();
+xmlHttp.open( "GET", 'https://api.scratch.mit.edu/users/' + document.getElementById('username').value, false );
+xmlHttp.send( null );
+document.getElementById("username").value = JSON.parse(xmlHttp.responseText).history.lastReadMessages;
+}
+</script>
+</head>
+<body>
+<input id="username" type="text" value="username">
+<button value="get" onclick="gettxt();">
+</body>
+</html>
