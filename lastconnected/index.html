@@ -1,0 +1,21 @@
+<html>
+<head>
+  <title>Get the Last Connected Time</title>
+<script>
+function gettxt() {
+var xmlHttp = new XMLHttpRequest();
+xmlHttp.open( "GET", 'https://api.scratch.mit.edu/users/' + document.getElementById('username').value, false );
+xmlHttp.send( null );
+document.getElementById("username").value = JSON.parse(xmlHttp.responseText).history.lastReadMessages;
+}
+</script>
+</head>
+<body>
+  <h1>Get the last connected time from an user</h1>
+  Get the last connected time from an user!<br>
+  Type the username here:<br>
+  <input id="username" type="text" value="Username"></input>
+  <button onclick="gettxt();">Get!</button>
+  <footer><b>This site is maintended by JuegOStrower</b></footer>
+</body>
+</html>
