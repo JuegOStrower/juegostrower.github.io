@@ -9,7 +9,7 @@ $(document).ready(function(){
 		}
 	}).on("paste", function(){
 		$(this).css("color", "black");
-		$("#downproj").val = projectId.replace("://scratch.mit.edu/projects/", "").replace("https", "").replace("http", "");
+		$("#downproj").val = $("#downproj").val().replace("://scratch.mit.edu/projects/", "").replace("https", "").replace("http", "");
 		if(isNaN(projectId)){
 			$("#downproj").css("color", "red");
 		}
