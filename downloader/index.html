@@ -37,8 +37,16 @@
       <p>The private projects only hides the project page, but the assets and the code are public..</p>
     <div class="w3-container w3-responsive">
 	<div id="progress"></div>
-	<input type="text" id="project" value="https://scratch.mit.edu/projects/" class="w3-text-black w3-input" placeholder="Project URL" autofocus /><button id="go" class="w3-white w3-button">Download!</button>
-	<pre><code id="log"></code></pre>
+	<table class="w3-table" style="margin:0px auto; width:40%">
+          <tbody><tr class="w3-text-white">
+            <th>What's the Project Id?</th>
+          </tr>
+          <tr class="w3-white">
+            <td><input id="downproj" style="padding:1px" class="w3-input" type="text" value="1234"></td>
+            <td class="w3-gray w3-hover-indigo w3-center w3-button" onclick="window.location = '/downloader/#' + document.getElementById('downproj').value">Download</td>
+	</tr>
+        </tbody></table>
+	    <pre><code id="log"></code></pre>
   </div>  
 	<footer class="w3-center w3-container w3-black w3-padding-16">
         <span class="site-footer-owner">This site is maintained by <a href="https://scratch.mit.edu/users/JuegOStrower">JuegOStrower</a> in Scratch.</span>
