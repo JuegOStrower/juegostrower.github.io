@@ -7,8 +7,6 @@ $(document).ready(function(){
 		if(isNaN(projectId)){
 			$("#downproj").css("color", "red");
 		}
-	}).on("paste", function(){
-		$(this).val("");
 	});
 	$("#downproj").bind("input paste", function(){
 		$(this).css("color", "black");
