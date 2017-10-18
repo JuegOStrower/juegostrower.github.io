@@ -10,7 +10,7 @@ $(document).ready(function(){
 	}).on("paste", function(){
 		$(this).val("");
 	});
-	$("#downproj").bind("paste", function(){
+	$("#downproj").bind("input paste", function(){
 		$(this).css("color", "black");
 		$("#downproj").val($("#downproj").val().replace("://scratch.mit.edu/projects/", "").replace("https", "").replace("http", ""))
 		if(isNaN($("#downproj").val)){
