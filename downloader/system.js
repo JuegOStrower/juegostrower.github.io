@@ -12,7 +12,7 @@ $(document).ready(function(){
 	});
 	if (!window.location.hash.replace("#", "") == ""){
 		$("#downproj").val("https://scratch.mit.edu/projects/" + window.location.hash.replace("#", ""));
-		$("#go").click();
+		$("#downnow").click();
 	}
 	$("#downnow").click(function(){
 		$("#progress").removeClass("error success");
