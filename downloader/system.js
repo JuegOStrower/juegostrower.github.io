@@ -183,10 +183,9 @@ function setProgress(perc){
 }
 
 function reset(){
-	$("#downnow, #downproj").removeAttr("disabled");
 	$("#downproj").removeAttr("disabled");
 	$("#downinput").removeAttr("style");
-	$("#downproj").attr("class", "w3-gray w3-hover-indigo w3-center w3-button");
+	$("#downnow").attr("class", "w3-gray w3-hover-indigo w3-center w3-button");
 }
 
 function logMessage(msg){
