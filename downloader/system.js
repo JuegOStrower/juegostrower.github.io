@@ -23,9 +23,9 @@ $(document).ready(function(){
 			$("#downproj").css("color", "red");
 			return;
 		}
-		$("#downnow").attr("disabled","");
-		$("downinput").attr("style", "background-color:rgb(235, 235, 228)");
-		$("downproj").attr("class", "w3-gray w3-center");
+		$("#downproj").attr("disabled","");
+		$("#downinput").attr("style", "background-color:rgb(235, 235, 228)");
+		$("#downnow").attr("class", "w3-gray w3-center");
 		startDownload(projectId);
 	});
 	$("#downdirect").click(function(){
@@ -177,13 +177,16 @@ function psuccess(){
 }
 
 function setProgress(perc){
-	maxWidth = $("#project").width() + $("#go").width();
-	$("#progress").css("left", $("#project").position().left+"px");
+	maxWidth = $("#downproj").width() + $("#downnow").width();
+	$("#progress").css("left", $("#downproj").position().left+"px");
 	$("#progress").width(perc * maxWidth * 1.055 / 100);
 }
 
 function reset(){
-	$("#go, #project").removeAttr("disabled");
+	$("#downnow, #downproj").removeAttr("disabled");
+	$("#downproj").removeAttr("disabled");
+	$("#downinput").removeAttr("style");
+	$("#downproj").attr("class", "w3-gray w3-hover-indigo w3-center w3-button");
 }
 
 function logMessage(msg){
