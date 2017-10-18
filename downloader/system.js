@@ -33,7 +33,7 @@ $(document).ready(function(){
 		var projectId = $("#downproj").val();
 		projectId = projectId.replace("://scratch.mit.edu/projects/", "").replace("https", "").replace("http", "");
 		projectId = parseInt(projectId);
-		prompt('Copy and paste this link to auto download the enetered project',projectId);
+		prompt('Copy and paste this link to auto download the enetered project',"http://www.juegostrower.tk/downloader/#" + projectId);
 	});
 });
 
