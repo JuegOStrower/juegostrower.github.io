@@ -33,7 +33,7 @@ $(document).ready(function(){
 		var projectId = $("#downproj").val();
 		projectId = projectId.replace("://scratch.mit.edu/projects/", "").replace("https", "").replace("http", "");
 		projectId = parseInt(projectId);
-		prompt('Copy and paste this link to auto download the enetered project',document.getElementById(projectId).value);
+		prompt('Copy and paste this link to auto download the enetered project',projectId);
 	});
 });
 
@@ -184,7 +184,7 @@ function setProgress(perc){
 
 function reset(){
 	$("#downproj").removeAttr("disabled");
-	$("#downinput").removeAttr("style");
+	$("#downinput").attr("style", "background-color:rgb(255, 255, 255)");
 	$("#downnow").attr("class", "w3-gray w3-hover-indigo w3-center w3-button");
 }
 
