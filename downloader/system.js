@@ -1,26 +1,37 @@
 $(document).ready(function(){
-	$("#project").bind("keydown keyup keypress", function(){
+	$("#downproj").bind("keydown keyup keypress", function(){
 		$(this).css("color", "black");
-		var projectId = $("#project").val();
+		var projectId = $("#downproj").val();
 		projectId = projectId.replace("://scratch.mit.edu/projects/", "").replace("https", "").replace("http", "");
 		projectId = parseInt(projectId);
 		if(isNaN(projectId)){
-			$("#project").css("color", "red");
+			$("#downproj").css("color", "red");
 		}
 	}).on("paste", function(){
 		$(this).val("");
 	});
-	$("#go").click(function(){
+	if (!window.location.hash.replace("#", "") == ""){
+		$("#downproj").val("https://scratch.mit.edu/projects/" + window.location.hash.replace("#", ""));
+		$("#go").click();
+	}
+	$("#downnow").click(function(){
 		$("#progress").removeClass("error success");
-		var projectId = $("#project").val();
+		var projectId = $("#downproj").val();
 		projectId = projectId.replace("://scratch.mit.edu/projects/", "").replace("https", "").replace("http", "");
 		projectId = parseInt(projectId);
 		if(isNaN(projectId)){
-			$("#project").css("color", "red");
+			$("#downproj").css("color", "red");
 			return;
 		}
-		$("#go, #project").attr("disabled","disabled");
+		$("#downnow, #downproj").attr("disabled","disabled");
 		startDownload(projectId);
+	});
+	$("#downdirect").click(function(){
+		$("#progress").removeClass("error success");
+		var projectId = $("#downproj").val();
+		projectId = projectId.replace("://scratch.mit.edu/projects/", "").replace("https", "").replace("http", "");
+		projectId = parseInt(projectId);
+		prompt('Copy and paste this link to auto download the enetered project',document.getElementById(projectId).value);
 	});
 });
 
