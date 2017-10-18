@@ -8,7 +8,11 @@ $(document).ready(function(){
 			$("#downproj").css("color", "red");
 		}
 	}).on("paste", function(){
-		$(this).val("");
+		$(this).css("color", "black");
+		$("#downproj").val = projectId.replace("://scratch.mit.edu/projects/", "").replace("https", "").replace("http", "");
+		if(isNaN(projectId)){
+			$("#downproj").css("color", "red");
+		}
 	});
 	if (!window.location.hash.replace("#", "") == ""){
 		$("#downproj").val("https://scratch.mit.edu/projects/" + window.location.hash.replace("#", ""));
