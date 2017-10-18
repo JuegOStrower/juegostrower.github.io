@@ -23,7 +23,9 @@ $(document).ready(function(){
 			$("#downproj").css("color", "red");
 			return;
 		}
-		$("#downnow, #downproj").attr("disabled","disabled");
+		$("#downnow).attr("disabled","");
+		$("downinput").attr("style", "background-color:rgb(235, 235, 228)");
+		$("downproj").attr("class", "w3-gray w3-center");
 		startDownload(projectId);
 	});
 	$("#downdirect").click(function(){
