@@ -8,12 +8,11 @@ $(document).ready(function(){
 			$("#downproj").css("color", "red");
 		}
 	}).on("paste", function(){
-		$(this).val = "";
-		}
+		$(this).val("");
 	});
 	$("#downproj").bind("paste", function(){
 		$(this).css("color", "black");
-		$("#downproj").val = $("#downproj").val().replace("://scratch.mit.edu/projects/", "").replace("https", "").replace("http", "");
+		$("#downproj").val($("#downproj").val().replace("://scratch.mit.edu/projects/", "").replace("https", "").replace("http", ""))
 		if(isNaN($("#downproj").val)){
 			$("#downproj").css("color", "red");
 		}
