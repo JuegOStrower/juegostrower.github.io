@@ -20,16 +20,18 @@ $(document).ready(function(){
 		}
 	}
 	$("#downnow").click(function(){
-		$("#progress").removeClass("error success");
-		var projectId = $("#downproj").val();
-		if(isNaN(Number(projectId))){
-			$("#downproj").css("color", "red");
-		} else {
-			$("#downproj").css("color", "black");
-			$("#downproj").attr("disabled","");
-			$("#downinput").attr("style", "background-color:rgb(235, 235, 228)");
-			$("#downnow").attr("class", "w3-gray w3-center");
-			startDownload(projectId);
+		if(!$(this).attr("class") == "w3-gray w3-center"){
+			$("#progress").removeClass("error success");
+			var projectId = $("#downproj").val();
+			if(isNaN(Number(projectId))){
+				$("#downproj").css("color", "red");
+			} else {
+				$("#downproj").css("color", "black");
+				$("#downproj").attr("disabled","");
+				$("#downinput").attr("style", "background-color:rgb(235, 235, 228)");
+				$("#downnow").attr("class", "w3-gray w3-center");
+				startDownload(projectId);
+			}
 		}
 	});
 	$("#downdirect").click(function(){
