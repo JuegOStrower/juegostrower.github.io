@@ -1,23 +1,25 @@
 $(document).ready(function(){
 	$("#downproj").bind("keydown keyup keypress", function(){
-		$(this).css("color", "black");
-		var projectId = $("#downproj").val();
-		projectId = projectId.replace("://scratch.mit.edu/projects/", "").replace("https", "").replace("http", "");
-		projectId = parseInt(projectId);
-		if(isNaN(projectId)){
-			$("#downproj").css("color", "red");
+		var projectId = $(this).val().replace("://scratch.mit.edu/projects/", "").replace("https", "").replace("http", "").substring(0,10);
+		if(isNaN(Number(projectId))){
+			$(this).css("color", "red");
+		} else {
+			$(this).css("color", "black");
 		}
+		$(this).val(projectId);
 	});
 	$("#downproj").bind("input paste", function(){
-		$(this).css("color", "black");
-		$("#downproj").val($("#downproj").val().replace("://scratch.mit.edu/projects/", "").replace("https", "").replace("http", ""))
-		if(isNaN($("#downproj").val)){
-			$("#downproj").css("color", "red");
+		$(this).val($(this).val().replace("://scratch.mit.edu/projects/", "").replace("https", "").replace("http", "")).substring(0,10);
+		if(isNaN(Number($(this).val))){
+			$(this).css("color", "red");
+		} else {
+			$(this).css("color", "black");
 		}
+		projectId = Number($(this).val);
 	});
 	if (!window.location.hash.replace("#", "") == ""){
 		$("#downproj").val("https://scratch.mit.edu/projects/" + window.location.hash.replace("#", ""));
-		document.getElementById("downdirect").click();
+		document.getElementById("downnow").click();
 	}
 	$("#downnow").click(function(){
 		$("#progress").removeClass("error success");
