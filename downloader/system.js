@@ -6,6 +6,7 @@ $(document).ready(function(){
 			$("#downnow").attr("class", "w3-gray w3-center");
 		} else {
 			$(this).css("color", "black");
+			$("#downnow").attr("class", "w3-gray w3-hover-indigo w3-center w3-button");
 		}
 	});
 	if (!window.location.hash.replace("#", "") == ""){
