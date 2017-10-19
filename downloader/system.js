@@ -20,7 +20,7 @@ $(document).ready(function(){
 		}
 	}
 	$("#downnow").click(function(){
-		if(!$(this).attr("class") == "w3-gray w3-center"){
+		if(!($(this).attr("class") == "w3-gray w3-center")){
 			$("#progress").removeClass("error success");
 			var projectId = $("#downproj").val();
 			if(isNaN(Number(projectId))){
