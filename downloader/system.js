@@ -1,27 +1,16 @@
 $(document).ready(function(){
-	$("#downproj").bind("keydown keyup keypress", function(){
-		var projectId = $(this).val().replace("://scratch.mit.edu/projects/", "").replace("https", "").replace("http", "").substring(0,10);
-		if(isNaN(Number(projectId))){
-			$(this).css("color", "red");
-		} else {
-			$(this).css("color", "black");
-		}
-		$(this).val(projectId);
-	});
 	$("#downproj").bind("input paste", function(){
-		$(this).val($(this).val().replace("://scratch.mit.edu/projects/", "").replace("https", "").replace("http", "")).substring(0,10);
-		if(isNaN(Number($(this).val))){
+		$(this).val($(this).val().replace("://scratch.mit.edu/projects/", "").replace("https", "").replace("http", "").substring(0,10));
+		if(isNaN(Number($(this).val()))){
 			$(this).css("color", "red");
 		} else {
 			$(this).css("color", "black");
 		}
-		projectId = Number($(this).val);
 	});
 	if (!window.location.hash.replace("#", "") == ""){
 		$("#downproj").val(window.location.hash.replace("#", "").replace("://scratch.mit.edu/projects/", "").replace("https", "").replace("http", "")).substring(0,10));
-		projectId = Number($(this).val);
 		if(isNaN(Number($(this).val))){
-			$(this).css("color", "red");
+			$("#downnow").attr("class", "w3-gray w3-center");
 		} else {
 			$(this).css("color", "black");
 			document.getElementById("downnow").click();
@@ -30,23 +19,18 @@ $(document).ready(function(){
 	$("#downnow").click(function(){
 		$("#progress").removeClass("error success");
 		var projectId = $("#downproj").val();
-		projectId = projectId.replace("://scratch.mit.edu/projects/", "").replace("https", "").replace("http", "");
-		projectId = parseInt(projectId);
-		if(isNaN(projectId)){
+		if(isNaN(Number(projectId))){
 			$("#downproj").css("color", "red");
-			return;
+		} else {
+			$("#downproj").css("color", "black");
+			$("#downproj").attr("disabled","");
+			$("#downinput").attr("style", "background-color:rgb(235, 235, 228)");
+			$("#downnow").attr("class", "w3-gray w3-center");
+			startDownload(projectId);
 		}
-		$("#downproj").attr("disabled","");
-		$("#downinput").attr("style", "background-color:rgb(235, 235, 228)");
-		$("#downnow").attr("class", "w3-gray w3-center");
-		startDownload(projectId);
 	});
 	$("#downdirect").click(function(){
-		$("#progress").removeClass("error success");
-		var projectId = $("#downproj").val();
-		projectId = projectId.replace("://scratch.mit.edu/projects/", "").replace("https", "").replace("http", "");
-		projectId = parseInt(projectId);
-		prompt('Copy and paste this link to auto download the enetered project',"http://www.juegostrower.tk/downloader/#" + projectId);
+		prompt('Copy and paste this link to auto download the enetered project',"http://www.juegostrower.tk/downloader/#" + $("#downproj").val());
 	});
 });
 
