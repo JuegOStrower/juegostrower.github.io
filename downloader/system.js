@@ -3,6 +3,7 @@ $(document).ready(function(){
 		$(this).val($(this).val().replace("://scratch.mit.edu/projects/", "").replace("https", "").replace("http", "").substring(0,10));
 		if(isNaN(Number($(this).val()))){
 			$(this).css("color", "red");
+			$("#downnow").attr("class", "w3-gray w3-center");
 		} else {
 			$(this).css("color", "black");
 		}
@@ -10,9 +11,11 @@ $(document).ready(function(){
 	if (!window.location.hash.replace("#", "") == ""){
 		$("#downproj").val(window.location.hash.replace("#", "").replace("://scratch.mit.edu/projects/", "").replace("https", "").replace("http", "")).substring(0,10);
 		if(isNaN(Number($(this).val()))){
+			$(this).css("color", "red");
 			$("#downnow").attr("class", "w3-gray w3-center");
 		} else {
 			$(this).css("color", "black");
+			$("#downnow").attr("class", "w3-gray w3-hover-indigo w3-center w3-button");
 			document.getElementById("downnow").click();
 		}
 	}
