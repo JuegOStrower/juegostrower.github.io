@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	$("#downproj").bind("input paste", function(){
-		$(this).val($(this).val().replace("://scratch.mit.edu/projects/", "").replace("https", "").replace("http", "").substring(0,10));
+		$(this).val($(this).val().replace("://scratch.mit.edu/projects/", "").replace("https", "").replace("http", "").replace("/","").substring(0,10));
 		if(isNaN(Number($(this).val()))){
 			$(this).css("color", "red");
 			$("#downnow").attr("class", "w3-gray w3-center");
