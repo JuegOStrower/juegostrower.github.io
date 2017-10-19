@@ -18,8 +18,14 @@ $(document).ready(function(){
 		projectId = Number($(this).val);
 	});
 	if (!window.location.hash.replace("#", "") == ""){
-		$("#downproj").val("https://scratch.mit.edu/projects/" + window.location.hash.replace("#", ""));
-		document.getElementById("downnow").click();
+		$("#downproj").val(window.location.hash.replace("#", "").replace("://scratch.mit.edu/projects/", "").replace("https", "").replace("http", "")).substring(0,10));
+		projectId = Number($(this).val);
+		if(isNaN(Number($(this).val))){
+			$(this).css("color", "red");
+		} else {
+			$(this).css("color", "black");
+			document.getElementById("downnow").click();
+		}
 	}
 	$("#downnow").click(function(){
 		$("#progress").removeClass("error success");
