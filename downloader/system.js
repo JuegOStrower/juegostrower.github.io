@@ -116,7 +116,7 @@ function downloadSound(){
 		});
 	} else {
 		logMessage("Loading project title...");
-		$.get("https://scratch.mit.edu/api/v1/project/"+id+"/?format=json", function(data){
+		$.get("https://cdn.projects.scratch.mit.edu/internalapi/project/181467202/"+id+"/get/", function(data){
 			logMessage("Generating ZIP...");
 			var content = jszip.generate({type:"blob"});
 			logMessage("Saving...");
