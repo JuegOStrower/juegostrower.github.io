@@ -21,8 +21,6 @@ function startDownload(projectId){
 	soundsToDownload = [];
   costumesToDownload = [];
 	id = projectId;
-	jszip = new JSZip();
-	jszip.comment = "Created with JuegOStrower's Project Downloader";
 	$.get("https://cdn.projects.scratch.mit.edu/internalapi/project/"+projectId+"/get/", function(data){
 		logMessage("Loaded JSON");
 		project = data;
@@ -34,7 +32,8 @@ function startDownload(projectId){
 		logMessage("Found "+totalAssets+" assets");
     console.log(costumesToDownload);
     console.log(soundsToDownload);
-		jszip.file("project.json", JSON.stringify(project));
+	console.log(project);
+	console.log(JSON.parse(project));
 	});
 }
 
