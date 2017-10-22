@@ -171,7 +171,6 @@ function psuccess(){
 }
 
 function setProgress(perc) {
-  var elem = document.getElementById("percBar");   
   var width = document.getElementById('percBar').style.width.replace("%","");
   var id = setInterval(frame, 10);
   function frame() {
@@ -179,7 +178,7 @@ function setProgress(perc) {
       clearInterval(id);
     } else {
       width++; 
-      elem.style.width = width + '%'; 
+      document.getElementById("percBar").style.width = width + '%'; 
     }
   }
 }
