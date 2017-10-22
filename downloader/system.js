@@ -1,5 +1,6 @@
 $(document).ready(function(){
 	$("#downproj").bind("input paste", function(){
+		setProgress(0);
 		$(this).val($(this).val().replace(/\D/g,'').substring(0,10));
 		if(isNaN(Number($(this).val()))){
 			$(this).css("color", "red");
@@ -52,8 +53,6 @@ var totalAssets = 0;
 var completeAssets = 0;
 
 function startDownload(projectId){
-	$("#log").text("");
-	$("#progress").text("");
 	logMessage("Downloading project: "+projectId);
 	soundId = 0;
 	costumeId = 0;
@@ -163,20 +162,12 @@ function processSoundsAndCostumes(node){
 function perror(){
 	logMessage("Download error");
 	setProgress(100);
-	$("#progress").addClass("error");
-	$("#progress").animate({opacity:0}, 1000, function(){
-		$(this).css({"opacity":1, width:0});
-		reset();
-	});
+	reset();
 }
 
 function psuccess(){
 	setProgress(100);
-	$("#progress").addClass("success");
-	$("#progress").animate({opacity:0}, 1000, function(){
-		$(this).css({"opacity":1, width:0});
-		reset();
-	});
+	reset();
 }
 
 function setProgress(perc) {
@@ -201,5 +192,4 @@ function reset(){
 
 function logMessage(msg){
 	console.log(msg);
-	//$("#log").text(msg+"\n"+$("#log").text());
 }
