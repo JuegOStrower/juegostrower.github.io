@@ -179,10 +179,18 @@ function psuccess(){
 	});
 }
 
-function setProgress(perc){
-	maxWidth = $("#downproj").width() + $("#downnow").width();
-	$("#progress").css("left", $("#downproj").position().left+"px");
-	$("#progress").width(perc * maxWidth * 1.055 / 100);
+function setProgress(perc) {
+  var elem = document.getElementById("percBar");   
+  var width = window.getComputedStyle(document.getElementById('percBar')).getPropertyValue('width');
+  var id = setInterval(frame, 10);
+  function frame() {
+    if (width >= perc) {
+      clearInterval(id);
+    } else {
+      width++; 
+      elem.style.width = width + '%'; 
+    }
+  }
 }
 
 function reset(){
