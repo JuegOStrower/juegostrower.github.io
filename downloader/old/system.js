@@ -48,7 +48,7 @@ function startDownload(projectId){
 	id = projectId;
 	setProgress(0);
 	jszip = new JSZip();
-	jszip.comment = "Created with MegaApuTurkUltra's Project Downloader";
+	jszip.comment = "Downloaded with JuegOStrower's Project Downloader";
 	$.get("https://cdn.projects.scratch.mit.edu/internalapi/project/"+projectId+"/get/", function(data){
 		setProgress(10);
 		logMessage("Loaded JSON");
