@@ -192,5 +192,6 @@ function reset(){
 }
 
 function logMessage(msg){
-	$("#log").text(msg+"\n"+$("#log").text());
+	console.log(msg);
+	//$("#log").text(msg+"\n"+$("#log").text());
 }
