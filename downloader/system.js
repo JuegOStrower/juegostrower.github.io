@@ -68,7 +68,7 @@ function startDownload(projectId){
 	$.get("https://cdn.projects.scratch.mit.edu/internalapi/project/"+projectId+"/get/", function(data){
 		setProgress(10);
 		logMessage("Loaded JSON");
-		project = data;
+		project = JSON.parse(data);
 		processSoundsAndCostumes(project);
 		if(project.hasOwnProperty("children")){
 			for(child in project.children){
