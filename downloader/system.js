@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	$("#downproj").bind("input paste", function(){
-		$(this).val($(this).val()..replace(/\D/g,'').substring(0,10));
+		$(this).val($(this).val().replace(/\D/g,'').substring(0,10));
 		if(isNaN(Number($(this).val()))){
 			$(this).css("color", "red");
 			$("#downnow").attr("class", "w3-gray w3-center");
