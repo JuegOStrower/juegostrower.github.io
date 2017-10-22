@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	$("#downproj").bind("input paste", function(){
-		setProgress(0);
+		resetProgress();
 		$(this).val($(this).val().replace(/\D/g,'').substring(0,10));
 		if(isNaN(Number($(this).val()))){
 			$(this).css("color", "red");
@@ -61,7 +61,7 @@ function startDownload(projectId){
 	soundsToDownload = [];
   costumesToDownload = [];
 	id = projectId;
-	setProgress(0);
+	resetProgress();
 	jszip = new JSZip();
 	jszip.comment = "Created with JuegOStrower's Project Downloader";
 	$.get("https://cdn.projects.scratch.mit.edu/internalapi/project/"+projectId+"/get/", function(data){
@@ -181,6 +181,9 @@ function setProgress(perc) {
       document.getElementById("percBar").style.width = width + '%'; 
     }
   }
+}
+function resetProgress() {
+	document.getElementById("percBar").style.width = '0%'; 
 }
 
 function reset(){
