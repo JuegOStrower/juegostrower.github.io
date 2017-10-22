@@ -172,7 +172,7 @@ function psuccess(){
 
 function setProgress(perc) {
   var elem = document.getElementById("percBar");   
-  var width = window.getComputedStyle(document.getElementById('percBar')).getPropertyValue('width');
+  var width = document.getElementById('percBar').style.width.replace("%","");
   var id = setInterval(frame, 10);
   function frame() {
     if (width >= perc) {
