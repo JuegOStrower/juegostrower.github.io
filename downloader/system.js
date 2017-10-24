@@ -1,3 +1,10 @@
+var jszip = null;
+var project = null;
+var id = null;
+var assetsToDownload = [];
+var totalAssets = 0;
+var completeAssets = 0;
+
 $(document).ready(function(){
 	$("#downproj").bind("input paste", function(){
 		resetProgress();
@@ -25,15 +32,15 @@ $(document).ready(function(){
 	$("#downnow").click(function(){
 		if(!($(this).attr("class") == "w3-gray w3-center")){
 			$("#progress").removeClass("error success");
-			var projectId = $("#downproj").val();
-			if(isNaN(Number(projectId))){
+			id = $("#downproj").val();
+			if(isNaN(Number(id))){
 				$("#downproj").css("color", "red");
 			} else {
 				$("#downproj").css("color", "black");
 				$("#downproj").attr("disabled","");
 				$("#downinput").attr("style", "background-color:rgb(235, 235, 228)");
 				$("#downnow").attr("class", "w3-gray w3-center");
-				startDownload(projectId);
+				startDownload(id);
 			}
 		}
 	});
@@ -42,29 +49,14 @@ $(document).ready(function(){
 	});
 });
 
-var maxWidth = 0;
-var jszip = null;
-var project = null;
-var id = null;
-var soundId = 0;
-var costumeId = 0;
-var soundsToDownload = [];
-var costumesToDownload = [];
-var totalAssets = 0;
-var completeAssets = 0;
-
-function startDownload(projectId){
+function startDownload(id){
 	logMessage("Downloading project: "+projectId);
-	soundId = 0;
-	costumeId = 0;
 	totalAssets = 0;
 	completeAssets = 0;
-	soundsToDownload = [];
-  	costumesToDownload = [];
-	id = projectId;
+	assetsToDownload = [];
 	resetProgress();
 	jszip = new JSZip();
-	jszip.comment = "Created with JuegOStrower's Project Downloader";
+	jszip.comment = "Downloaded with JuegOStrower's Project Downloader";
 	$.get("https://cdn.projects.scratch.mit.edu/internalapi/project/"+projectId+"/get/", function(data){
 		setProgress(10);
 		logMessage("Loaded JSON");
@@ -77,98 +69,66 @@ function startDownload(projectId){
 		}
 		logMessage("Found "+totalAssets+" assets");
 		jszip.file("project.json", JSON.stringify(project));
-		downloadCostume();
-	}).fail(perror);
+		while (assetsToDownload.length > 0){
+			downloadAsset(assetsToDownload.pop());
+		}
+		exportSb2();
+	}).fail(function(){
+		logMessage("Download error");
+		setProgress(100);
+		reset();
+	});
 }
 
-function downloadCostume(){
-	if(costumesToDownload.length > 0){
-		var current = costumesToDownload.pop();
-		logMessage("Loading asset "+current.costumeName+" ("+completeAssets+"/"+totalAssets+")");
-		JSZipUtils.getBinaryContent(
-			"https://cdn.assets.scratch.mit.edu/internalapi/asset/"+current.baseLayerMD5+"/get/", 
-			function(err, data){
-				if(err) {error();return;}
-				var ext = current.baseLayerMD5.match(/\.[a-zA-Z0-9]+/)[0];
-				jszip.file(current.baseLayerID+ext, data, {binary: true});
-				completeAssets++;
-				setProgress(10+89*(completeAssets/totalAssets));
-				downloadCostume();
-		});
-	} else {
-		downloadSound();
-	}
+function downloadAsset(assetData){
+	logMessage("Loading asset "+assetData[0]+" ("+completeAssets+"/"+totalAssets+")");
+	JSZipUtils.getBinaryContent(
+		"https://cdn.assets.scratch.mit.edu/internalapi/asset/"+assetData+"/get/", 
+		function(err, data){
+			if(err) {return;}
+			jszip.file(assetData[1]+assetData[2].md5.match(/\.[a-zA-Z0-9]+/)[0], data, {binary: true});
+			completeAssets++;
+			setProgress(10+89*(completeAssets/totalAssets));
+	});
 }
 
-function downloadSound(){
-	if(soundsToDownload.length > 0){
-		var current = soundsToDownload.pop();
-		logMessage("Loading asset "+current.soundName+" ("+completeAssets+"/"+totalAssets+")");
-		JSZipUtils.getBinaryContent(
-			"https://cdn.assets.scratch.mit.edu/internalapi/asset/"+current.md5+"/get/", 
-			function(err, data){
-				if(err) {error();return;}
-				var ext = current.md5.match(/\.[a-zA-Z0-9]+/)[0];
-				jszip.file(current.soundID+ext, data, {binary: true});
-				completeAssets++;
-				setProgress(10+89*(completeAssets/totalAssets));
-				downloadSound();
-		});
-	} else {
-		logMessage("Loading project title...");
-		$.get("https://scratch.mit.edu/api/v1/project/"+id+"/?format=json", function(data){
-			logMessage("Generating ZIP...");
-			var content = jszip.generate({type:"blob"});
-			logMessage("Saving...");
-			try {
-				saveAs(content, data.title+".sb2");
-			} catch(e){
-				saveAs(content, "project.sb2");
-			}
-			logMessage("Complete");
-			psuccess();
-		}).fail(function(){
-			logMessage("Failed to load project title");
-			logMessage("Generating ZIP...");
-			var content = jszip.generate({type:"blob"});
-			logMessage("Saving...");
-      saveAs(content, "project.sb2");
-			logMessage("Complete");
-			psuccess();
-		});
-	}
+function exportSb2(){
+	logMessage("Loading project title...");
+	$.get("https://scratch.mit.edu/api/v1/project/"+id+"/?format=json", function(data){
+		logMessage("Successfully loaded project title");
+		logMessage("Generating SB2...");
+		try {
+			saveAs(jszip.generate({type:"blob"}), data.title+".sb2");
+		} catch(e){
+			saveAs(jszip.generate({type:"blob"}), "project.sb2");
+		}
+	}).fail(function(){
+		logMessage("Failed to load project title");
+		logMessage("Generating SB2...");
+		saveAs(jszip.generate({type:"blob"}), "project.sb2");
+	});
+	logMessage("Complete");
+	setProgress(100);
+	reset();
 }
 
 function processSoundsAndCostumes(node){
 	if(node.hasOwnProperty("costumes")){
 		for(var i=0;i<node.costumes.length;i++){
-			var current = node.costumes[i];
-			current.baseLayerID = costumeId;
-			costumeId++;
+			node.costumes[i].baseLayerID = i;
+			i++;
 			totalAssets++;
-			costumesToDownload.push(current);
+			assetToDownload.push([node.costumes[i].customeName,node.costumes[i].baseLayerID,node.costumes[i].baseLayerMD5]);
 		}
 	}
 	if(node.hasOwnProperty("sounds")){
 		for(var i=0;i<node.sounds.length;i++){
-			var current = node.sounds[i];
-			current.soundID = soundId;
-			soundId++;
+			node.sounds[i].soundID = i;
+			i++;
 			totalAssets++;
-			soundsToDownload.push(current);
+			assetToDownload.push([node.sounds[i].soundName,node.sounds[i].soundID,node.sounds[i].md5]);
 		}
 	}
-}
-
-function perror(){
-	logMessage("Download error");
-	setProgress(100);
-	reset();
-}
-
-function psuccess(){
-	setProgress(100);
-	reset();
 }
 
 function setProgress(perc) {
