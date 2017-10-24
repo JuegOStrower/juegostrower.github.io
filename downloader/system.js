@@ -80,6 +80,25 @@ function startDownload(id){
 	});
 }
 
+function processSoundsAndCostumes(node){
+	if(node.hasOwnProperty("costumes")){
+		for(var i=0;i<node.costumes.length;i++){
+			node.costumes[i].baseLayerID = i;
+			i++;
+			totalAssets++;
+			assetsToDownload.push([node.costumes[i].costumeName,node.costumes[i].baseLayerID,node.costumes[i].baseLayerMD5]);
+		}
+	}
+	if(node.hasOwnProperty("sounds")){
+		for(var i=0;i<node.sounds.length;i++){
+			node.sounds[i].soundID = i;
+			i++;
+			totalAssets++;
+			assetsToDownload.push([node.sounds[i].soundName,node.sounds[i].soundID,node.sounds[i].md5]);
+		}
+	}
+}
+
 function downloadAsset(assetData){
 	logMessage("Loading asset "+assetData[0]+" ("+completeAssets+"/"+totalAssets+")");
 	JSZipUtils.getBinaryContent(
@@ -110,25 +129,6 @@ function exportSb2(){
 	logMessage("Complete");
 	setProgress(100);
 	reset();
-}
-
-function processSoundsAndCostumes(node){
-	if(node.hasOwnProperty("costumes")){
-		for(var i=0;i<node.costumes.length;i++){
-			node.costumes[i].baseLayerID = i;
-			i++;
-			totalAssets++;
-			assetsToDownload.push([node.costumes[i].costumeName,node.costumes[i].baseLayerID,node.costumes[i].baseLayerMD5]);
-		}
-	}
-	if(node.hasOwnProperty("sounds")){
-		for(var i=0;i<node.sounds.length;i++){
-			node.sounds[i].soundID = i;
-			i++;
-			totalAssets++;
-			assetsToDownload.push([node.sounds[i].soundName,node.sounds[i].soundID,node.sounds[i].md5]);
-		}
-	}
 }
 
 function setProgress(perc) {
