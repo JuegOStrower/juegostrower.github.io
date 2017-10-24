@@ -4,15 +4,16 @@ $(document).ready(function(){
 		$(this).val($(this).val().replace(/\D/g,'').substring(0,10));
 		if(isNaN(Number($(this).val()))){
 			$(this).css("color", "red");
-			$("#downnow").attr("class", "w3-gray w3-center");
+			$(this).attr("class", "w3-gray w3-center");
 		} else {
 			$(this).css("color", "black");
-			$("#downnow").attr("class", "w3-gray w3-hover-indigo w3-center w3-button");
+			$(this).attr("class", "w3-gray w3-hover-indigo w3-center w3-button");
 		}
 	});
 	if (!window.location.hash.replace("#", "") == ""){
-		$("#downproj").val(window.location.hash.replace(/\D/g,'').substring(0,10));
-		if(isNaN(Number($(this).val()))){
+		resetProgress();
+		$("#downnow").val($("#downnow").val().replace(/\D/g,'').substring(0,10));
+		if(isNaN(Number($("#downnow").val()))){
 			$(this).css("color", "red");
 			$("#downnow").attr("class", "w3-gray w3-center");
 		} else {
@@ -59,7 +60,7 @@ function startDownload(projectId){
 	totalAssets = 0;
 	completeAssets = 0;
 	soundsToDownload = [];
-  costumesToDownload = [];
+  	costumesToDownload = [];
 	id = projectId;
 	resetProgress();
 	jszip = new JSZip();
