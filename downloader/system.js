@@ -1,6 +1,6 @@
 var jszip = null;
 var project = null;
-var id = null;
+var id = 181467202;
 var assetsToDownload = [];
 var totalAssets = 0;
 var completeAssets = 0;
@@ -50,14 +50,14 @@ $(document).ready(function(){
 });
 
 function startDownload(id){
-	logMessage("Downloading project: "+projectId);
+	logMessage("Downloading project: "+id);
 	totalAssets = 0;
 	completeAssets = 0;
 	assetsToDownload = [];
 	resetProgress();
 	jszip = new JSZip();
 	jszip.comment = "Downloaded with JuegOStrower's Project Downloader";
-	$.get("https://cdn.projects.scratch.mit.edu/internalapi/project/"+projectId+"/get/", function(data){
+	$.get("https://cdn.projects.scratch.mit.edu/internalapi/project/"+id+"/get/", function(data){
 		setProgress(10);
 		logMessage("Loaded JSON");
 		project = JSON.parse(data);
