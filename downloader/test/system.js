@@ -34,8 +34,9 @@ function startDownload(projectId){
 			}
 		}
 		logMessage("Found "+totalAssets+" assets");
-		jszip.file("project.json", JSON.stringify(project));
-		downloadCostume();
+		logMessage(costumesToDownload);
+		logMessage(soundsToDownload);
+		logMessage(project);
 	}).fail(perror);
 }
 
