@@ -118,7 +118,7 @@ function processSoundsAndCostumes(node){
 			node.costumes[i].baseLayerID = i;
 			i++;
 			totalAssets++;
-			assetToDownload.push([node.costumes[i].customeName,node.costumes[i].baseLayerID,node.costumes[i].baseLayerMD5]);
+			assetsToDownload.push([node.costumes[i].customeName,node.costumes[i].baseLayerID,node.costumes[i].baseLayerMD5]);
 		}
 	}
 	if(node.hasOwnProperty("sounds")){
@@ -126,7 +126,7 @@ function processSoundsAndCostumes(node){
 			node.sounds[i].soundID = i;
 			i++;
 			totalAssets++;
-			assetToDownload.push([node.sounds[i].soundName,node.sounds[i].soundID,node.sounds[i].md5]);
+			assetsToDownload.push([node.sounds[i].soundName,node.sounds[i].soundID,node.sounds[i].md5]);
 		}
 	}
 }
