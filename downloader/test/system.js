@@ -12,29 +12,89 @@ var totalAssets = 0;
 var completeAssets = 0;
 
 function startDownload(projectId){
-	$("#log").text("");
 	logMessage("Downloading project: "+projectId);
 	soundId = 0;
 	costumeId = 0;
 	totalAssets = 0;
 	completeAssets = 0;
 	soundsToDownload = [];
-  costumesToDownload = [];
+  	costumesToDownload = [];
 	id = projectId;
+	resetProgress();
+	jszip = new JSZip();
+	jszip.comment = "Created with JuegOStrower's Project Downloader";
 	$.get("https://cdn.projects.scratch.mit.edu/internalapi/project/"+projectId+"/get/", function(data){
+		setProgress(10);
 		logMessage("Loaded JSON");
-		project = data;
+		project = JSON.parse(data);
+		processSoundsAndCostumes(project);
 		if(project.hasOwnProperty("children")){
 			for(child in project.children){
 				processSoundsAndCostumes(project.children[child]);
 			}
 		}
 		logMessage("Found "+totalAssets+" assets");
-    console.log(costumesToDownload);
-    console.log(soundsToDownload);
-	console.log(project);
-	console.log(JSON.parse(project));
-	});
+		jszip.file("project.json", JSON.stringify(project));
+		downloadCostume();
+	}).fail(perror);
+}
+
+function downloadCostume(){
+	if(costumesToDownload.length > 0){
+		var current = costumesToDownload.pop();
+		logMessage("Loading asset "+current.costumeName+" ("+completeAssets+"/"+totalAssets+")");
+		JSZipUtils.getBinaryContent(
+			"https://cdn.assets.scratch.mit.edu/internalapi/asset/"+current.baseLayerMD5+"/get/", 
+			function(err, data){
+				if(err) {error();return;}
+				var ext = current.baseLayerMD5.match(/\.[a-zA-Z0-9]+/)[0];
+				jszip.file(current.baseLayerID+ext, data, {binary: true});
+				completeAssets++;
+				setProgress(10+89*(completeAssets/totalAssets));
+				downloadCostume();
+		});
+	} else {
+		downloadSound();
+	}
+}
+
+function downloadSound(){
+	if(soundsToDownload.length > 0){
+		var current = soundsToDownload.pop();
+		logMessage("Loading asset "+current.soundName+" ("+completeAssets+"/"+totalAssets+")");
+		JSZipUtils.getBinaryContent(
+			"https://cdn.assets.scratch.mit.edu/internalapi/asset/"+current.md5+"/get/", 
+			function(err, data){
+				if(err) {error();return;}
+				var ext = current.md5.match(/\.[a-zA-Z0-9]+/)[0];
+				jszip.file(current.soundID+ext, data, {binary: true});
+				completeAssets++;
+				setProgress(10+89*(completeAssets/totalAssets));
+				downloadSound();
+		});
+	} else {
+		logMessage("Loading project title...");
+		$.get("https://scratch.mit.edu/api/v1/project/"+id+"/?format=json", function(data){
+			logMessage("Generating ZIP...");
+			var content = jszip.generate({type:"blob"});
+			logMessage("Saving...");
+			try {
+				saveAs(content, data.title+".sb2");
+			} catch(e){
+				saveAs(content, "project.sb2");
+			}
+			logMessage("Complete");
+			psuccess();
+		}).fail(function(){
+			logMessage("Failed to load project title");
+			logMessage("Generating ZIP...");
+			var content = jszip.generate({type:"blob"});
+			logMessage("Saving...");
+      saveAs(content, "project.sb2");
+			logMessage("Complete");
+			psuccess();
+		});
+	}
 }
 
 function processSoundsAndCostumes(node){
@@ -58,6 +118,18 @@ function processSoundsAndCostumes(node){
 	}
 }
 
+function perror(){
+	logMessage("Download error");
+	reset();
+}
+
+function psuccess(){
+	reset();
+}
+
+function setProgress(perc) {}
+function resetProgress() {}
+function reset(){}
 function logMessage(msg){
-	$("#log").text(msg+"\n"+$("#log").text());
+	console.log(msg);
 }
