@@ -84,21 +84,13 @@ function processSoundsAndCostumes(node){
 	if(node.hasOwnProperty("costumes")){
 		for(var i=0;i<node.costumes.length;i++){
 			node.costumes[i].baseLayerID = i;
-			i++;
 			totalAssets++;
-			logMessage("node.costumes[0].costumeName");
-			logMessage(node.costumes[0].costumeName);
-			logMessage("node.costumes[0]");
-			logMessage(node.costumes[0]);
-			logMessage("node");
-			logMessage(node);
 			assetsToDownload.push([node.costumes[0].costumeName,node.costumes[i].baseLayerID,node.costumes[i].baseLayerMD5]);
 		}
 	}
 	if(node.hasOwnProperty("sounds")){
 		for(var i=0;i<node.sounds.length;i++){
 			node.sounds[i].soundID = i;
-			i++;
 			totalAssets++;
 			assetsToDownload.push([node.sounds[i].soundName,node.sounds[i].soundID,node.sounds[i].md5]);
 		}
