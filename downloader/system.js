@@ -67,7 +67,7 @@ function Download(id){
 				processSoundsAndCostumes(project.children[child]);
 			}
 		}
-		totalAssets = assetsToDownload.lenght || 0;
+		totalAssets = assetsToDownload.length;
 		logMessage("Found "+totalAssets+" assets");
 		jszip.file("project.json", JSON.stringify(project));
 		while (assetsToDownload.length > 0){
