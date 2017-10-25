@@ -103,7 +103,7 @@ function downloadAsset(assetData){
 		"https://cdn.assets.scratch.mit.edu/internalapi/asset/"+assetData[2]+"/get/", 
 		function(err, data){
 			if(err) {return;}
-			jszip.file(assetData[1]+"."+assetData[2].split(".")[this.length-1], data, {binary: true});
+			jszip.file(assetData[1]+"."+assetData[2].split(".")[assetData[2].split(".").length-1], data, {binary: true});
 			completeAssets++;
 			setProgress(10+89*(completeAssets/totalAssets));
 	});
