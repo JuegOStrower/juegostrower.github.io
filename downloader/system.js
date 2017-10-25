@@ -67,6 +67,7 @@ function Download(id){
 				processSoundsAndCostumes(project.children[child]);
 			}
 		}
+		totalAssets = assetsToDownload.lenght;
 		logMessage("Found "+totalAssets+" assets");
 		jszip.file("project.json", JSON.stringify(project));
 		while (assetsToDownload.length > 0){
@@ -83,15 +84,13 @@ function Download(id){
 function processSoundsAndCostumes(node){
 	if(node.hasOwnProperty("costumes")){
 		for(var i=0;i<node.costumes.length;i++){
-			node.costumes[i].baseLayerID = i;
-			totalAssets++;
+			//node.costumes[i].baseLayerID = i;
 			assetsToDownload.push([node.costumes[0].costumeName,node.costumes[i].baseLayerID,node.costumes[i].baseLayerMD5]);
 		}
 	}
 	if(node.hasOwnProperty("sounds")){
 		for(var i=0;i<node.sounds.length;i++){
-			node.sounds[i].soundID = i;
-			totalAssets++;
+			//node.sounds[i].soundID = i;
 			assetsToDownload.push([node.sounds[i].soundName,node.sounds[i].soundID,node.sounds[i].md5]);
 		}
 	}
