@@ -29,10 +29,10 @@ $(document).ready(function(){
 		$(this).val($(this).val().replace(/\D/g,'').substring(0,10));
 		if(isNaN(Number($(this).val()))){
 			$(this).css("color", "red");
-			$(this).attr("class", "w3-gray w3-center");
+			$("#downnow").attr("class", "w3-gray w3-center");
 		} else {
 			$(this).css("color", "black");
-			$(this).attr("class", "w3-gray w3-hover-indigo w3-center w3-button");
+			$("#downnow").attr("class", "w3-gray w3-hover-indigo w3-center w3-button");
 		}
 	});
 	if (!window.location.hash.replace("#", "") == ""){
