@@ -92,7 +92,7 @@ function processSoundsAndCostumes(node){
 			logMessage(node.costumes[0]);
 			logMessage("node");
 			logMessage(node);
-			assetsToDownload.push([node.costumes[0].costumeName,node.costumes[i].baseLayerID,node.costumes[i].baseLayerMD5]);
+			assetsToDownload.push([node.costumes[0].costumeName,node.costumes[i].baseLayerID,node.costumes[i].baseLayerMD5);
 		}
 	}
 	if(node.hasOwnProperty("sounds")){
