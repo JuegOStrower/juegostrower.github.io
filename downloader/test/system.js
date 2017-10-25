@@ -4,10 +4,7 @@ var maxWidth = 0;
 var jszip = null;
 var project = null;
 var id = null;
-var soundId = 0;
-var costumeId = 0;
-var soundsToDownload = [];
-var costumesToDownload = [];
+var assetsToDownload = [];
 var totalAssets = 0;
 var completeAssets = 0;
 
@@ -16,11 +13,9 @@ function Download(id){
 	totalAssets = 0;
 	completeAssets = 0;
 	assetsToDownload = [];
-	resetProgress();
 	jszip = new JSZip();
 	jszip.comment = "Downloaded with JuegOStrower's Project Downloader";
 	$.get("https://cdn.projects.scratch.mit.edu/internalapi/project/"+id+"/get/", function(data){
-		setProgress(10);
 		logMessage("Loaded JSON");
 		project = JSON.parse(data);
 		findAssets(project);
@@ -35,11 +30,8 @@ function Download(id){
 		while (assetsToDownload.length > 0){
 			downloadAsset(assetsToDownload.pop());
 		}
-		exportSb2();
 	}).fail(function(){
 		logMessage("Download error");
-		setProgress(100);
-		reset();
 	});
 }
 
@@ -66,7 +58,6 @@ function downloadAsset(assetData){
 			if(err) {return;}
 			jszip.file(assetData[1]+"."+assetData[2].split(".")[assetData[2].split(".").length-1], data, {binary: true});
 			completeAssets++;
-			setProgress(10+89*(completeAssets/totalAssets));
 	});
 }
 
