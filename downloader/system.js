@@ -85,6 +85,8 @@ function processSoundsAndCostumes(node){
 		for(var i=0;i<node.costumes.length;i++){
 			node.costumes[i].baseLayerID = i;
 			i++;
+			logMessage(node);
+			logMessage(node.costumes[i]);
 			totalAssets++;
 			assetsToDownload.push([node.costumes[i].costumeName,node.costumes[i].baseLayerID,node.costumes[i].baseLayerMD5]);
 		}
