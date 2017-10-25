@@ -1,4 +1,4 @@
-startDownload(prompt("Enter project id:"));
+Download(prompt("Enter project id:"));
 
 var maxWidth = 0;
 var jszip = null;
