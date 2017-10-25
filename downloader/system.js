@@ -6,6 +6,24 @@ var totalAssets = 0;
 var completeAssets = 0;
 
 $(document).ready(function(){
+	$("#downnow").click(function(){
+		if(!($(this).attr("class") == "w3-gray w3-center")){
+			$("#progress").removeClass("error success");
+			id = $("#downproj").val();
+			if(isNaN(Number(id))){
+				$("#downproj").css("color", "red");
+			} else {
+				$("#downproj").css("color", "black");
+				$("#downproj").attr("disabled","");
+				$("#downinput").attr("style", "background-color:rgb(235, 235, 228)");
+				$("#downnow").attr("class", "w3-gray w3-center");
+				Download(id);
+			}
+		}
+	});
+	$("#downdirect").click(function(){
+		prompt('Copy and paste this link to auto download the enetered project',"http://www.juegostrower.tk/downloader/#" + $("#downproj").val());
+	});
 	$("#downproj").bind("input paste", function(){
 		resetProgress();
 		$(this).val($(this).val().replace(/\D/g,'').substring(0,10));
@@ -29,27 +47,9 @@ $(document).ready(function(){
 			document.getElementById("downnow").click();
 		}
 	}
-	$("#downnow").click(function(){
-		if(!($(this).attr("class") == "w3-gray w3-center")){
-			$("#progress").removeClass("error success");
-			id = $("#downproj").val();
-			if(isNaN(Number(id))){
-				$("#downproj").css("color", "red");
-			} else {
-				$("#downproj").css("color", "black");
-				$("#downproj").attr("disabled","");
-				$("#downinput").attr("style", "background-color:rgb(235, 235, 228)");
-				$("#downnow").attr("class", "w3-gray w3-center");
-				startDownload(id);
-			}
-		}
-	});
-	$("#downdirect").click(function(){
-		prompt('Copy and paste this link to auto download the enetered project',"http://www.juegostrower.tk/downloader/#" + $("#downproj").val());
-	});
 });
 
-function startDownload(id){
+function Download(id){
 	logMessage("Downloading project: "+id);
 	totalAssets = 0;
 	completeAssets = 0;
