@@ -128,6 +128,10 @@ function exportSb2(){
 	reset();
 }
 
+function logMessage(msg){
+	console.log(msg);
+}
+
 function setProgress(perc) {
   var width = document.getElementById('percBar').style.width.replace("%","");
   var id = setInterval(frame, 10);
@@ -148,8 +152,4 @@ function reset(){
 	$("#downproj").removeAttr("disabled");
 	$("#downinput").attr("style", "background-color:rgb(255, 255, 255)");
 	$("#downnow").attr("class", "w3-gray w3-hover-indigo w3-center w3-button");
-}
-
-function logMessage(msg){
-	console.log(msg);
 }
