@@ -100,10 +100,10 @@ function processSoundsAndCostumes(node){
 function downloadAsset(assetData){
 	logMessage("Loading asset "+assetData[0]+" ("+completeAssets+"/"+totalAssets+")");
 	JSZipUtils.getBinaryContent(
-		"https://cdn.assets.scratch.mit.edu/internalapi/asset/"+assetData+"/get/", 
+		"https://cdn.assets.scratch.mit.edu/internalapi/asset/"+assetData[2]+"/get/", 
 		function(err, data){
 			if(err) {return;}
-			jszip.file(assetData[1]+assetData[2].md5.match(/\.[a-zA-Z0-9]+/)[0], data, {binary: true});
+			jszip.file(assetData[1]+"."+assetData[2].split(".")[this.length-1], data, {binary: true});
 			completeAssets++;
 			setProgress(10+89*(completeAssets/totalAssets));
 	});
