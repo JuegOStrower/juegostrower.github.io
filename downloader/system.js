@@ -4,6 +4,8 @@ var id = 181467202;
 var assetsToDownload = [];
 var totalAssets = 0;
 var completeAssets = 0;
+var customid = 0;
+var soundid = 0;
 
 $(document).ready(function(){
 	$("#downnow").click(function(){
@@ -81,19 +83,20 @@ function Download(id){
 
 function findAssets(node){
 	for(var i=0;i<node.costumes.length;i++){
-		node.costumes[i].baseLayerID = i;
+		node.costumes[i].baseLayerID = customid;
+		customid++;
 		assetsToDownload.push([node.costumes[i].costumeName,node.costumes[i].baseLayerID,node.costumes[i].baseLayerMD5]);
 	}
 	if(node.hasOwnProperty("sounds")){
 		for(var i=0;i<node.sounds.length;i++){
-			node.sounds[i].soundID = i;
+			node.sounds[i].soundID = soundid;
+			soundid++;
 			assetsToDownload.push([node.sounds[i].soundName,node.sounds[i].soundID,node.sounds[i].md5]);
 		}
 	}
 }
 
 function downloadAsset(assetData){
-	logMessage("Loading asset "+assetData[0]+" ("+completeAssets+"/"+totalAssets+")");
 	JSZipUtils.getBinaryContent(
 		"https://cdn.assets.scratch.mit.edu/internalapi/asset/"+assetData[2]+"/get/", 
 		function(err, data){
@@ -101,6 +104,7 @@ function downloadAsset(assetData){
 			jszip.file(assetData[1]+"."+assetData[2].split(".")[assetData[2].split(".").length-1], data, {binary: true});
 			completeAssets++;
 			setProgress(10+89*(completeAssets/totalAssets));
+			logMessage("Loading asset "+assetData[0]+" ("+completeAssets+"/"+totalAssets+")");
 	});
 }
 
