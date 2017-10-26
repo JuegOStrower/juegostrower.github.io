@@ -69,7 +69,7 @@ function Download(id){
 		logMessage("Found "+totalAssets+" assets");
 		jszip.file("project.json", JSON.stringify(project));
 		while (assetsToDownload.length > 0){
-			downloadAsset(assetsToDownload.shift());
+			downloadAsset(assetsToDownload.pop());
 		}
 		exportSb2();
 	}).fail(function(){
