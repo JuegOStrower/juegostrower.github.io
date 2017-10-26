@@ -1,5 +1,3 @@
-Download(prompt("Enter project id:"));
-
 var maxWidth = 0;
 var jszip = null;
 var project = null;
@@ -64,3 +62,7 @@ function downloadAsset(assetData){
 function logMessage(msg){
 	console.log(msg);
 }
+
+$(document).ready(function(){
+Download(prompt("Enter project id:"));
+})
