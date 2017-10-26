@@ -62,10 +62,8 @@ function Download(id){
 		logMessage("Loaded JSON");
 		project = JSON.parse(data);
 		findAssets(project);
-		if(project.hasOwnProperty("children")){
-			for(child in project.children){
-				findAssets(project.children[child]);
-			}
+		for(child in project.children){
+			findAssets(project.children[child]);
 		}
 		totalAssets = assetsToDownload.length;
 		logMessage("Found "+totalAssets+" assets");
@@ -82,11 +80,9 @@ function Download(id){
 }
 
 function findAssets(node){
-	if(node.hasOwnProperty("costumes")){
-		for(var i=0;i<node.costumes.length;i++){
-			node.costumes[i].baseLayerID = i;
-			assetsToDownload.push([node.costumes[i].costumeName,node.costumes[i].baseLayerID,node.costumes[i].baseLayerMD5]);
-		}
+	for(var i=0;i<node.costumes.length;i++){
+		node.costumes[i].baseLayerID = i;
+		assetsToDownload.push([node.costumes[i].costumeName,node.costumes[i].baseLayerID,node.costumes[i].baseLayerMD5]);
 	}
 	if(node.hasOwnProperty("sounds")){
 		for(var i=0;i<node.sounds.length;i++){
