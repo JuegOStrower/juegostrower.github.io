@@ -2,13 +2,13 @@ $(document).ready(function(){
 	$("#makenow").click(function(){
     if ($(this).text() == "Make It!"){
         $(this).text("Edit");
-        $("#makelink").val("https://go.juegostrower.tk/" + $("#maketype").val() + $("#makeproj").val());
+        $("#makelink").text("https://go.juegostrower.tk/" + $("#maketype").val() + $("#makeproj").val());
         $("#maketype").attr("hidden","");
         $("#makelinkbar").attr("hidden","");
         $("#makeproj").attr("hidden","");
       } else {
         $(this).text("Make It!");
-        $("#makelink").val("https://scratch.mit.edu/");
+        $("#makelink").text("https://scratch.mit.edu/");
         $("#maketype").removeAttr("hidden");
         $("#makelinkbar").removeAttr("hidden");
         $("#makeproj").removeAttr("hidden");
