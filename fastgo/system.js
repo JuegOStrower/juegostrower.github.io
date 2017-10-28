@@ -8,8 +8,9 @@ $(document).ready(function(){
         $("#makelinkbar").attr("hidden","");
         $("#makeproj").attr("class","w3-hide");
       } else {
-        $(this).text("Make It!");
+        $(this).text("Make it!");
         $("#makelink").text("https://scratch.mit.edu/");
+        $("#makelink").removeAttr("class");
         $("#maketype").removeAttr("hidden");
         $("#makelinkbar").removeAttr("hidden");
         $("#makeproj").attr("class","w3-input");
