@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	$("#makenow").click(function(){
-    if ($(this).text() == "Make It!"){
+    if ($(this).text() == "Make it!"){
         $(this).text("Edit");
         $("#makelink").text("https://go.juegostrower.tk/" + $("#maketype").val() + $("#makeproj").val());
         $("#makelink").attr("class","w3-text-black");
