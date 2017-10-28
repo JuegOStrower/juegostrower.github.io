@@ -3,15 +3,16 @@ $(document).ready(function(){
     if ($(this).text() == "Make It!"){
         $(this).text("Edit");
         $("#makelink").text("https://go.juegostrower.tk/" + $("#maketype").val() + $("#makeproj").val());
+        $("#makelink").attr("class","w3-text-black");
         $("#maketype").attr("hidden","");
         $("#makelinkbar").attr("hidden","");
-        $("#makeproj").attr("hidden","");
+        $("#makeproj").attr("class","w3-hide");
       } else {
         $(this).text("Make It!");
         $("#makelink").text("https://scratch.mit.edu/");
         $("#maketype").removeAttr("hidden");
         $("#makelinkbar").removeAttr("hidden");
-        $("#makeproj").removeAttr("hidden");
+        $("#makeproj").attr("class","w3-input");
       }
   })
 
