@@ -11,3 +11,4 @@ document.getElementById("connuser").removeAttribute("hiddden");
 document.getElementById("connow").innerText = "Get it!";
 document.getElementById("connuser").value = "JuegOStrower";
 }
+}
