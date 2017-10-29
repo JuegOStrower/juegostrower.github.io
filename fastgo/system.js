@@ -18,11 +18,7 @@ $(document).ready(function(){
   })
 
  $("#makechange").click(function(){
- if ($("#makechangetext").attr("class") == "w3-hide"){
-      $("#makechangetext").removeAttr("class");
-    } else {
-     $("#makechangetext").attr("class", "w3-hide");
-  }
+	document.getElementById('makechangetext').style.display='block';
 });
   
 	$("#makeproj").bind("input paste", function(){
