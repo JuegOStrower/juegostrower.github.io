@@ -41,8 +41,8 @@ function Download(id){
         console.log("Loaded JSON");
         project = JSON.parse(data);
         findAssets(project);
-        for(var spritenum in project.children){
-            findAssets(project.children[spritenum]);
+        for(var i in project.children){
+            findAssets(project.children[i]);
         }
         totalAssets = assetsToDownload.length;
         console.log("Found "+totalAssets+" assets");
@@ -53,8 +53,7 @@ function Download(id){
         exportSb2();
     }).fail(function(){
         console.log("Download error");
-        setProgress(100);
-        reset();
+        ready();
     });
 }
 
@@ -102,7 +101,7 @@ function exportSb2(){
     });
     console.log("Complete");
     setProgress(100);
-    reset();
+    ready();
 }
 
 function setProgress(perc) {
@@ -118,7 +117,8 @@ function setProgress(perc) {
     }
 }
 
-function reset(){
+function ready(){
+    setProgress(100);
     $("#downproj").removeAttr("disabled");
     $("#downinput").attr("style", "background-color:rgb(255, 255, 255)");
     $("#downnow").attr("class", "w3-gray w3-hover-indigo w3-center w3-button");
