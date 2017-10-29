@@ -13,7 +13,7 @@ function connnow() {
   }
 }
 
-function makedirect() {
+function conndirect() {
 	prompt("Copy and paste this link to auto get the last connected time of this user","http://www.juegostrower.tk/lastconnected/#" + document.getElementById("connuser").value);
 }
 
