@@ -22,7 +22,7 @@ $(document).ready(function(){
     $("#downproj").bind("input paste", function(){
         $(this).val($(this).val().replace(/\D/g,'').substring(0,10));
     });
-    if (!window.location.hash.replace("#", "") === ""){
+    if (!window.location.hash.replace("#", "") == ""){
         $("#downproj").val($("#downproj").val().replace(/\D/g,'').substring(0,10));
         document.getElementById("downnow").click();
     }
