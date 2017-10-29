@@ -39,12 +39,12 @@ $(document).ready(function(){
 	});
 	if (!window.location.hash.replace("#", "") == ""){
 		resetProgress();
-		$("#downnow").val($("#downnow").val().replace(/\D/g,'').substring(0,10));
-		if(isNaN(Number($("#downnow").val()))){
-			$(this).css("color", "red");
+		$("#downproj").val($("#downproj").val().replace(/\D/g,'').substring(0,10));
+		if(isNaN(Number($("#downproj").val()))){
+			$("#downproj").css("color", "red");
 			$("#downnow").attr("class", "w3-gray w3-center");
 		} else {
-			$(this).css("color", "black");
+			$("#downproj").css("color", "black");
 			$("#downnow").attr("class", "w3-gray w3-hover-indigo w3-center w3-button");
 			document.getElementById("downnow").click();
 		}
