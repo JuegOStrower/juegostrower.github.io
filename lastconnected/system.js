@@ -17,7 +17,9 @@ function conndirect() {
 	prompt("Copy and paste this link to auto get the last connected time of this user","http://www.juegostrower.tk/lastconnected/#" + document.getElementById("connuser").value);
 }
 
+document.onload = function(){
 if (!window.location.hash.replace("#", "") == ""){
 	document.getElementById("connuser").value = window.location.hash.replace("#", "").substring(0,24);
 	document.getElementById("connnow").click();
+}
 }
