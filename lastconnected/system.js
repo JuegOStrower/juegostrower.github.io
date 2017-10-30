@@ -1,8 +1,8 @@
 function connnow() {
   if (document.getElementById("connnow").innerText == "Get it!"){
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open("GET", 'https://api.scratch.mit.edu/users/' + document.getElementById('connuser').value);
-	xhttp.onreadystatechange = function() {
+	var xmlHttp = new XMLHttpRequest();
+	xmlHttp.open("GET", 'https://api.scratch.mit.edu/users/' + document.getElementById('connuser').value);
+	xmlHttp.onreadystatechange = function() {
     	if (this.readyState == 4 && this.status == 200) {
     		document.getElementById("connlink").innerText = "The " + document.getElementById('connuser').value + "'s last connected time is: " + new Date(JSON.parse(xmlHttp.responseText).history.lastReadMessages).toLocaleString();
     	} else if (this.readyState == 4 && (this.status == 404 || this.status == 403)){
