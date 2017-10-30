@@ -10,11 +10,14 @@ function connnow() {
 		}
 	};
     xmlHttp.send(null);
+	document.getElementById("connlink").innerText = "Loading the " + document.getElementById('connuser').value + "'s last connected time...";
     document.getElementById("connuser").setAttribute("class","w3-hide");
+    document.getElementById("connlink").setAttribute("class","w3-text-black");
     document.getElementById("connnow").innerText = "Edit";
 
   } else {
     document.getElementById("connnow").innerText = "Get it!";
+	document.getElementById("connlink").removeAttribute("class");
     document.getElementById("connlink").innerText = "https://scratch.mit.edu/users/";
     document.getElementById("connuser").setAttribute("class","w3-input");
   }
