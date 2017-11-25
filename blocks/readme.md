@@ -1,11 +1,11 @@
 # Scratch Blocks
 <table dir="ltr">
         <thead>
-            <th id="source">English</th>
-            <th id="translation">Español</th>
+            <th>English</th>
+            <th>Español</th>
         </thead>
         <tbody>
-<tr class="separator">
+<tr>
         <th colspan="2">By JuegOStrower</th>
       </tr>
 <tr>
