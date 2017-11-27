@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	$("#playnow").click(function(){
-    document.getElementById("player").innerHTML = document.getElementById("player").innerHTML.replace(/JPROJECTID/g,window.location.pathname.replace(/\D/g,""));
+    document.getElementById("player").innerHTML = document.getElementById("player").innerHTML.replace(/JPROJECTID/g,$("#playproj").val());
 	  $("#playinput").attr("class","w3-hide");
 	  $("#player").attr("class","");
 	})
