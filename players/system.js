@@ -7,19 +7,19 @@ $(document).ready(function(){
       case "guidev":
         window.location = "https://llk.github.io/scratch-gui/develop/#" + document.getElementById("downproj").value;
         break;
-       case "vm":
+      case "vm":
         window.location = "https://llk.github.io/scratch-vm/#" + document.getElementById("downproj").value;
         break;
-       case "phos":
+      case "phos":
         window.location = "https://phosphorus.github.io/#" + document.getElementById("downproj").value;
         break;
-	    case "rem":
+      case "rem":
         window.location = "https://www.juegostrower.tk/unsharedviewer/#" + document.getElementById("downproj").value;
         break;
-       case "down":
+      case "down":
         window.location = "https://www.juegostrower.tk/downloader/#" + document.getElementById("downproj").value;
         break;
-       default:
+      default:
         alert("There was an error reading the function data");
         break;
     }
