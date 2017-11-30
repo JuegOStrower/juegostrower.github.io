@@ -10,12 +10,45 @@
     <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-highway.css">
     <link rel="icon" href="favicon.png">
     <link rel="apple-touch-icon" href="favicon.png">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=UA-82877528-5"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'UA-82877528-5');
+    </script>
+    <script>
+    function play(type){
+    switch(type){
+      case "gui":
+        window.location = "https://llk.github.io/scratch-gui/#" + document.getElementById("downproj").value;
+        break;
+      case "guidev":
+        window.location = "https://llk.github.io/scratch-gui/develop/#" + document.getElementById("downproj").value;
+        break;
+      case "vm":
+        window.location = "https://llk.github.io/scratch-vm/#" + document.getElementById("downproj").value;
+        break;
+      case "phos":
+        window.location = "https://phosphorus.github.io/#" + document.getElementById("downproj").value;
+        break;
+      case "rem":
+        window.location = "https://www.juegostrower.tk/unsharedviewer/#" + document.getElementById("downproj").value;
+        break;
+      case "down":
+        window.location = "https://www.juegostrower.tk/downloader/#" + document.getElementById("downproj").value;
+        break;
+      default:
+        alert("There was an error reading the function data");
+        break;
+      }
+    }
+    $(document).ready(function(){
+      $("#downproj,#connuser,#makeproj,#unshid,#openproj").bind("input paste", function(){
+	      $(this).val($(this).val().replace(/\D/g,'').substring(0,10));
+      });
+    })
     </script>
   </head>
   <body>
@@ -229,7 +262,38 @@
         <div class="w3-padding-32">
           <h2>Other Players for projects</h2>
           <p class="w3-container">You can play any prject with the Scratch 3 VM, Scratch GUI, Scratch GUI Develop, Phospurus and download it.</p>
+          <div class="w3-container w3-responsive">
+            <table class="w3-table">
+              <tbody>
+                <tr class="w3-text-white">
+                  <th>Scratch 3 GUI</th>
+                  <th><input value="181467202" type="text" class="w3-input w3-indigo" style="display: inline-block; padding: 1px; color: black; width: 110px;" id="openproj"></th>
+                </tr>
+                <tr class="w3-white">
+                  <td>Scratch 3 GUI Develop</td>
+                  <td onclick="play('gui')">Play</td>
+                </tr>
+                <tr class="w3-white">
+                  <td>Scratch VM</td>
+                  <td onclick="play('vm')">Play</td>
+                </tr>
+                <tr class="w3-white">
+                  <td>Phosphorus</td>
+                  <td onclick="play('phos')">Play</td>
+                </tr>
+                <tr class="w3-white">
+                  <td>Remote Player</td>
+                  <td onclick="play('rem')">Play</td>
+                </tr>
+                <tr class="w3-white">
+                  <td>Download</td>
+                  <td onclick="play('down')">Play</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
           <p>Get more info <a href="players">here</a></p>
+          <p>Add to <a href="here">tampermonkey</a> <a href="/players/add.user.js">here</a></p>
         </div>
       </div>
     </div>
