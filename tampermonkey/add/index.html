@@ -10,11 +10,11 @@ if ((!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.inde
 	location.href = "https://safari.tampermonkey.net/tampermonkey.safariextz";
 } else if (false || !!document.documentMode){
 	docuent.getElementById("info").innerHTML = "<h1>Error!</h1>Sorry, Tampermokey is not available for Internet Explorer";
-} else if (!isIE && !!window.StyleMedia){
+} else if (!(false || !!document.documentMode) && !!window.StyleMedia){
 	locaion.href = "https://www.microsoft.com/es-ar/store/p/tampermonkey/9nblggh5162s";
 } else if (!!window.chrome && !!window.chrome.webstore){
 	locaion.href = "https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo";
-} else if ((!!window.chrome && !!window.chrome.webstore || (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0) && !!window.CSS){
+} else if (!(!!window.chrome && !!window.chrome.webstore || (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0) && !!window.CSS){
 	locaion.href = "https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo";
 } else {
 	docuent.getElementById("info").innerHTML = "<h1>Error!</h1>Sorry, Tampermokey is not available for your browser.<br>If you think that this is an error, you can try to download Tampermokey from the <a href='https://tampermonkey.net'>oficial site</a>.";
