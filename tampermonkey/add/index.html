@@ -1,0 +1,34 @@
+<html>
+<head>
+<script>
+// Opera 8.0+
+if (isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0){
+	locaion.href = "operalink";
+}
+// Firefox 1.0+
+if (typeof InstallTrigger !== 'undefined'){
+	locaion.href = "firefoxlink";
+}
+// Safari 3.0+ "[object HTMLElementConstructor]"
+if (/constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || (typeof safari !== 'undefined' && safari.pushNotification)){
+	location.href = "safarilink";
+}
+// Internet Explorer 6-11
+if (false || !!document.documentMode){
+	locaion.href = "iexplorelink";
+}
+// Edge 20+
+if (!isIE && !!window.StyleMedia){
+	locaion.href = "edgelink";
+}
+// Chrome 1+
+if (!!window.chrome && !!window.chrome.webstore){
+	locaion.href = "chromelink";
+}
+// Chromium
+if ((isChrome || isOpera) && !!window.CSS){
+	locaion.href = "chromiumlink";
+}
+</script>
+</head>
+</html>
