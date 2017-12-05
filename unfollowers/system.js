@@ -25,6 +25,7 @@ $(document).ready(function(){
 			followers = 0;
 			document.getElementById("percBar").style.width = '0%';
 			document.getElementById("usertitle").innerHTML = "Loading...";
+			document.getElementById("userlist").innerHTML = "You will see who unfollowed this user here...";
 			$.get("https://scratch.mit.edu/users/" + user + "/followers/?page=" + page, loaded).fail(function () {document.getElementById("usertitle").innerHTML = "That user doesn't exists";console.log("That user doesn't exists");ready();});
         }
     });
