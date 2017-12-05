@@ -52,8 +52,8 @@ function loaded(data) {
 		nowlist.push($users[i].text.trim());
 	}
 	nowfollowers += $users.length;
-	setProgress(40*(nowfollowers % 59/pageCount));
-	console.log("Indexing current followers: page " + (nowfollowers  + 58) % 59 + "/" + pageCount);
+	setProgress(40*(page/pageCount));
+	console.log("Indexing current followers: page " + page + "/" + pageCount);
 	page++;
 	$.get("https://scratch.mit.edu/users/" + user + "/followers/?page=" + page, loaded).fail(continueCode);
 }
@@ -68,8 +68,8 @@ function continueCode() {
 			list.push(ans[i].username);
 		}
 		followers += ans.length;
-		setProgress(40 + 49*(followers % 20/pageCount));
-		console.log("Indexing old followers: page " + followers % 20 + "/" + pageCount + " (approx)");
+		setProgress(40 + 49*((followers/20)/pageCount));
+		console.log("Indexing old followers: page " + followers 7 20 + "/" + pageCount + " (approx)");
 	}
 	console.log("Checking difrences between current and old");
 	for (var i = 0; i < list.length; i++) {
