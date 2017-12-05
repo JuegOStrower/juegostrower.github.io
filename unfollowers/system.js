@@ -80,7 +80,7 @@ function continueCode() {
 	unfollowers = followers - nowfollowers;
 	document.getElementById("usertitle").innerHTML = unfollowers + " Users Unfollowed " + user + ".";
 	console.log(unfollowers + " Users Unfollowed " + user + ".");
-	document.getElementById("userlist").innerHTML = unfollowers + " Users Unfollowed " + user + ".";
+	document.getElementById("userlist").innerHTML = "Those are: " + diff.toString().replace(/,/g,", ");
 	console.log ("Those are: " + diff.toString().replace(/,/g,", "));
 }
 
