@@ -43,7 +43,7 @@ $(document).ready(function(){
 function loaded(data) {
 	setProgress(40*(nowfollowers % 20/pageCount));
 	var $dom = $(data);
-	if (pageCount = 0){
+	if (pageCount == 0){
 		pageCount = $dom.getElementsByClassName("page-current").length;
 	}
 	console.log("Indexing current followers: page " + nowfollowers % 20 + "/" + pageCount);
