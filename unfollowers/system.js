@@ -53,7 +53,7 @@ function loaded(data) {
 	}
 	nowfollowers += $users.length;
 	setProgress(40*(nowfollowers % 59/pageCount));
-	console.log("Indexing current followers: page " + nowfollowers % 59 + "/" + pageCount);
+	console.log("Indexing current followers: page " + (nowfollowers  + 58) % 59 + "/" + pageCount);
 	page++;
 	$.get("https://scratch.mit.edu/users/" + user + "/followers/?page=" + page, loaded).fail(continueCode);
 }
