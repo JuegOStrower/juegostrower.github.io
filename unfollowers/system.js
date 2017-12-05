@@ -69,7 +69,7 @@ function continueCode() {
 			list.push(ans[i].username);
 		}
 		followers += ans.length;
-		setProgress(40 + 49*((followers/20)/pageCount));
+		setProgress(40 + 49*((followers/20)/(pageCount * 3 + 1)));
 		console.log("Indexing old followers: page " + Math.round(followers / 20) + "/" + (pageCount * 3 + 1) + " (approx)");
 	}
 	console.log("Checking difrences between current and old");
