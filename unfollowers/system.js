@@ -45,7 +45,7 @@ $(document).ready(function(){
 function loaded(data) {
 	var $dom = $(data);
 	if (pageCount == 0){
-		pageCount = $dom.match(/page-current/g) || []).length;
+		pageCount = ($dom.match(/page-current/g) || []).length;
 	}
 	var $users = $dom.find('span.title').children();
 	for (var i = 0; i < $users.length; i++) {
