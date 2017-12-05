@@ -41,11 +41,11 @@ $(document).ready(function(){
 });
 
 function loaded(data) {
-	setProgress(40*(nowfollowers % 20/pageCount));
 	var $dom = $(data);
 	if (pageCount == 0){
-		pageCount = $dom.getElementsByClassName("page-current").length;
+		//pageCount = $dom.getElementsByClassName("page-current").length;
 	}
+	//setProgress(40*(nowfollowers % 20/pageCount));
 	console.log("Indexing current followers: page " + nowfollowers % 20 + "/" + pageCount);
 	var $users = $dom.find('span.title').children();
 	for (var i = 0; i < $users.length; i++) {
@@ -58,7 +58,7 @@ function loaded(data) {
 
 function continueCode() {
 	while (Number(ans.length) > 19) {
-		setProgress(40 + 49*(followers % 20/pageCount));
+		//setProgress(40 + 49*(followers % 20/pageCount));
 		console.log("Indexing old followers: page " + followers % 20 + "/" + pageCount + " (approx)");
 		var xmlHttp = new XMLHttpRequest();
 		xmlHttp.open("GET", 'https://api.scratch.mit.edu/users/' + user + ' /followers?offset=' + followers, false);
