@@ -24,8 +24,8 @@ $(document).ready(function(){
 			diff = [];
 			followers = 0;
 			document.getElementById("percBar").style.width = '0%';
-			docoument.getElementById("usertitle").innerHTML = "Loading...";
-			$.get("https://scratch.mit.edu/users/" + user + "/followers/?page=" + page, loaded).fail(function () {docoument.getElementById("usertitle").innerHTML = "That user doesn't exists";console.log("That user doesn't exists");ready();});
+			document.getElementById("usertitle").innerHTML = "Loading...";
+			$.get("https://scratch.mit.edu/users/" + user + "/followers/?page=" + page, loaded).fail(function () {document.getElementById("usertitle").innerHTML = "That user doesn't exists";console.log("That user doesn't exists");ready();});
         }
     });
     $("#unfdirect").click(function(){
@@ -78,9 +78,9 @@ function continueCode() {
 	console.log("Complete");
 	ready();
 	unfollowers = followers - nowfollowers;
-	docoument.getElementById("usertitle").innerHTML = unfollowers + " Users Unfollowed " + user + ".";
+	document.getElementById("usertitle").innerHTML = unfollowers + " Users Unfollowed " + user + ".";
 	console.log(unfollowers + " Users Unfollowed " + user + ".");
-	docoument.getElementById("userlist").innerHTML = unfollowers + " Users Unfollowed " + user + ".";
+	document.getElementById("userlist").innerHTML = unfollowers + " Users Unfollowed " + user + ".";
 	console.log ("Those are: " + diff.toString().replace(/,/g,", "));
 }
 
