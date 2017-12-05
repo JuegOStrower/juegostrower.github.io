@@ -76,10 +76,11 @@ function continueCode() {
 	}
 	console.log("Complete");
 	ready();
-	//PRINT DATA IN THE CONSOLE
-	var unfollowers = followers - nowfollowers;
-	console.log(unfollowers + " users unfollowed you.");
-	console.log ("Those are: " + diff);
+	unfollowers = followers - nowfollowers;
+	dccoument.getElementById("usertitle").innerHTML = unfollowers + " Users Unfollowed " + user + ".";
+	console.log(unfollowers + " Users Unfollowed " + user + ".");
+	dccoument.getElementById("userlist").innerHTML = unfollowers + " Users Unfollowed " + user + ".";
+	console.log ("Those are: " + diff.toString().replace(/,/g,", "));
 }
 
 
