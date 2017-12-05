@@ -25,7 +25,7 @@ $(document).ready(function(){
 			followers = 0;
 			document.getElementById("percBar").style.width = '0%';
 			dccoument.getElementById("usertitle").innerHTML = "Loading...";
-			$.get("https://scratch.mit.edu/users/" + user + "/followers/?page=" + page, loaded).fail(function () {console.log("Download error");ready();});
+			$.get("https://scratch.mit.edu/users/" + user + "/followers/?page=" + page, loaded).fail(function () {dccoument.getElementById("usertitle").innerHTML = "That user doesn't exists";console.log("That user doesn't exists");ready();});
         }
     });
     $("#unfdirect").click(function(){
