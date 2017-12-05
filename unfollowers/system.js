@@ -14,7 +14,7 @@ $(document).ready(function(){
             $("#unfuser").attr("disabled","");
             $("#unfinput").attr("style", "background-color:rgb(235, 235, 228)");
             $("#unfnow").attr("class", "w3-gray w3-center");
-			var user = $("#unfuser").val();
+			user = $("#unfuser").val();
 			console.log("Loading unfollowers: "+user);
 			ans = [1,2,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9,0]
 			nowfollowers = 0;
@@ -24,6 +24,7 @@ $(document).ready(function(){
 			diff = [];
 			followers = 0;
 			pageCount = 0;
+			unfollowers = 0;
 			document.getElementById("percBar").style.width = '0%';
 			document.getElementById("usertitle").innerHTML = "Loading...";
 			document.getElementById("userlist").innerHTML = "You will see who unfollowed this user here...";
