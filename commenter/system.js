@@ -65,8 +65,8 @@ function continueCode() {
 			throw "There was an error posting the comments.";
 		}
 	};
-	xhttp.setRequestHeader("X-CSRFToken", "IEi6SVeAu8MCHAqpgT5d7Q8HtRJwFYiU")
 	xhttp.open("POST", "https://scratch.mit.edu/site-api/comments/user/" + followList[i] + "/add/", true);
+	xhttp.setRequestHeader("X-CSRFToken", "IEi6SVeAu8MCHAqpgT5d7Q8HtRJwFYiU")
 	xhttp.send(JSON.stringify({"content":message.replace(/-USER-/g, followList[i]),"parent_id":"","commentee_id":""}));
 	console.log("Posting comment to " + followList[i] + ", user " + (i + 1) + "/" + count);
 }
