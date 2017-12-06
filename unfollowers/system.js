@@ -14,7 +14,7 @@ $(document).ready(function(){
             $("#unfuser").attr("disabled","");
             $("#unfinput").attr("style", "background-color:rgb(235, 235, 228)");
             $("#unfnow").attr("class", "w3-gray w3-center");
-			var user = $("#unfuser").val();
+			user = $("#unfuser").val();
 			console.log("Loading unfollowers: "+user);
 			ans = [1,2,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9,0]
 			nowfollowers = 0;
@@ -23,8 +23,11 @@ $(document).ready(function(){
 			list = [];
 			diff = [];
 			followers = 0;
+			pageCount = 0;
+			unfollowers = 0;
 			document.getElementById("percBar").style.width = '0%';
 			document.getElementById("usertitle").innerHTML = "Loading...";
+			document.getElementById("userlist").innerHTML = "You will see who unfollowed this user here...";
 			$.get("https://scratch.mit.edu/users/" + user + "/followers/?page=" + page, loaded).fail(function () {document.getElementById("usertitle").innerHTML = "That user doesn't exists";console.log("That user doesn't exists");ready();});
         }
     });
@@ -43,23 +46,21 @@ $(document).ready(function(){
 function loaded(data) {
 	var $dom = $(data);
 	if (pageCount == 0){
-		//pageCount = $dom.getElementsByClassName("page-current").length;
+		pageCount = ($dom.find('span.page-current').children() || []).length + 1;
 	}
-	//setProgress(40*(nowfollowers % 20/pageCount));
-	console.log("Indexing current followers: page " + nowfollowers % 20 + "/" + pageCount);
 	var $users = $dom.find('span.title').children();
 	for (var i = 0; i < $users.length; i++) {
 		nowlist.push($users[i].text.trim());
 	}
 	nowfollowers += $users.length;
+	setProgress(40*(page/pageCount));
+	console.log("Indexing current followers: page " + page + "/" + pageCount);
 	page++;
 	$.get("https://scratch.mit.edu/users/" + user + "/followers/?page=" + page, loaded).fail(continueCode);
 }
 
 function continueCode() {
-	while (Number(ans.length) > 19) {
-		//setProgress(40 + 49*(followers % 20/pageCount));
-		console.log("Indexing old followers: page " + followers % 20 + "/" + pageCount + " (approx)");
+	while (ans.length > 19) {
 		var xmlHttp = new XMLHttpRequest();
 		xmlHttp.open("GET", 'https://api.scratch.mit.edu/users/' + user + ' /followers?offset=' + followers, false);
 		xmlHttp.send(null);
@@ -67,7 +68,9 @@ function continueCode() {
 		for (var i = 0;i < ans.length;i++){
 			list.push(ans[i].username);
 		}
-		followers = Number(followers) + Number(ans.length);
+		followers += ans.length;
+		setProgress(40 + 49*((followers/20)/(pageCount * 3 + 1)));
+		console.log("Indexing old followers: page " + Math.round(followers / 20) + "/" + (pageCount * 3 + 1) + " (approx)");
 	}
 	console.log("Checking difrences between current and old");
 	for (var i = 0; i < list.length; i++) {
