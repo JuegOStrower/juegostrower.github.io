@@ -1,5 +1,5 @@
 var user = "JuegOStrower";
-var message = "Hello _NAME_, I have shared a new project!";
+var message = "Hello -USER-, I have shared a new project!";
 var pageCount = 0;
 var followList = [];
 var page = 1;
@@ -49,7 +49,7 @@ function continueCode() {
 		$.ajax({ type: "POST", url: "https://scratch.mit.edu/site-api/comments/user/" + followList[i] + "/add/", data: JSON.stringify({"content":message.replace(/-USER-/g, followList[i]),"parent_id":"","commentee_id":""}) });
 		console.log("Comment posted to " + followList[i] + ", user " + i + "/" + count);
 		setProgress(40 + 59*(i/count));
-        }
+	}
 	ready();
 	console.log("Complete");
 	document.getElementById("commnow").innerHTML = "Complete, you've posted " + count + " comments";
