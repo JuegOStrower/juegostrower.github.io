@@ -63,7 +63,7 @@ function continueCode() {
 		} else {
 			document.getElementById("commnow").innerHTML = "There was an error posting the comments.";
 			thorw "There was an error posting the comments.";
-		};
+		}
 	}
 	XMLHttpRequest.setRequestHeader("X-CSRFToken", "IEi6SVeAu8MCHAqpgT5d7Q8HtRJwFYiU")
 	xhttp.open("POST", "https://scratch.mit.edu/site-api/comments/user/" + followList[i] + "/add/", true);
