@@ -3,6 +3,7 @@ var message = "Hello -USER-, I have shared a new project!";
 var pageCount = 0;
 var followList = [];
 var page = 1;
+var token = "token";
 
 $(document).ready(function(){
 	$("#commnow").click(function(){
@@ -20,6 +21,7 @@ $(document).ready(function(){
 			followList = [];
 			document.getElementById("percBar").style.width = '0%';
 			document.getElementById("commnow").innerHTML = "Loading...";
+			$.get("https://scratch.mit.edu/session/",function (data){try {token = data.user.token;} catch (e){};
 			$.get("https://scratch.mit.edu/users/" + user + "/followers/?page=" + page, loaded).fail(function () {document.getElementById("commnow").innerHTML = "That user doesn't exists";console.log("That user doesn't exists");ready();});
 		}
 	});
@@ -46,7 +48,7 @@ function loaded(data) {
 function continueCode() {
 	var count = followList.length;
 	for (var i = 0; i < count; i++){
-		$.ajax({ type: "POST", url: "https://scratch.mit.edu/site-api/comments/user/" + followList[i] + "/add/", data: JSON.stringify({"content":message.replace(/-USER-/g, followList[i]),"parent_id":"","commentee_id":""}) });
+		$.ajax({ type: "POST", url: "https://scratch.mit.edu/site-api/comments/user/" + followList[i] + "/add/", headers: {"x-csrftoken": "IEi6SVeAu8MCHAqpgT5d7Q8HtRJwFYiU"}, data: JSON.stringify({"content":message.replace(/-USER-/g, followList[i]),"parent_id":"","commentee_id":""}) });
 		console.log("Comment posted to " + followList[i] + ", user " + i + "/" + count);
 		setProgress(40 + 59*(i/count));
 	}
@@ -71,6 +73,7 @@ function setProgress(perc) {
 function ready(){
     setProgress(100);
     $("#commuser").removeAttr("disabled");
+    $("#commtext").removeAttr("disabled");
     $("#comminputtext").attr("style", "background-color:rgb(255, 255, 255)");
     $("#comminputuser").attr("style", "background-color:rgb(255, 255, 255)");
     $("#commnow").attr("class", "w3-gray w3-hover-indigo w3-center w3-button");
