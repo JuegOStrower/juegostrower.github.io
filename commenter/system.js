@@ -20,7 +20,7 @@ $(document).ready(function(){
 			followList = [];
 			document.getElementById("percBar").style.width = '0%';
 			document.getElementById("commnow").innerHTML = "Loading...";
-    			$.get( "https://scratch.mit.edu/users/" + user + "/followers/?page=1", loaded );
+			$.get("https://scratch.mit.edu/users/" + user + "/followers/?page=" + page, loaded).fail(function () {document.getElementById("usertitle").innerHTML = "That user doesn't exists";console.log("That user doesn't exists");ready();});
         }
     });
     $("#commuser").bind("input paste", function(){
@@ -35,9 +35,8 @@ function loaded(data) {
 	}
 	var $users = $dom.find('span.title').children();
 	for (var i = 0; i < $users.length; i++) {
-		nowlist.push($users[i].text.trim());
+		followList.push($users[i].text.trim());
 	}
-	nowfollowers += $users.length;
 	setProgress(40*(page/pageCount));
 	console.log("Indexing current followers: page " + page + "/" + pageCount);
 	page++;
