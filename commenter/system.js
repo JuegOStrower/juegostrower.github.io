@@ -5,13 +5,13 @@ var followList = [];
 var page = 1;
 
 $(document).ready(function(){
-    $("#commnow").click(function(){
-        if(!($(this).attr("class") == "w3-gray w3-center")){
-            $("#commuser").attr("disabled","");
-            $("#commtext").attr("disabled","");
-            $("#comminputtext").attr("style", "background-color:rgb(235, 235, 228)");
-            $("#comminputuser").attr("style", "background-color:rgb(235, 235, 228)");
-            $("#commnow").attr("class", "w3-gray w3-center");
+	$("#commnow").click(function(){
+		if(!($(this).attr("class") == "w3-gray w3-center")){
+			$("#commuser").attr("disabled","");
+			$("#commtext").attr("disabled","");
+			$("#comminputtext").attr("style", "background-color:rgb(235, 235, 228)");
+			$("#comminputuser").attr("style", "background-color:rgb(235, 235, 228)");
+			$("#commnow").attr("class", "w3-gray w3-center");
 			user = $("#commuser").val();
 			message = $("#commtext").val();
 			console.log('Posting comment "' + message +'" to ' + user);
@@ -20,12 +20,12 @@ $(document).ready(function(){
 			followList = [];
 			document.getElementById("percBar").style.width = '0%';
 			document.getElementById("commnow").innerHTML = "Loading...";
-			$.get("https://scratch.mit.edu/users/" + user + "/followers/?page=" + page, loaded).fail(function () {document.getElementById("usertitle").innerHTML = "That user doesn't exists";console.log("That user doesn't exists");ready();});
-        }
-    });
-    $("#commuser").bind("input paste", function(){
-        $(this).val($(this).val().substring(0,19));
-    });
+			$.get("https://scratch.mit.edu/users/" + user + "/followers/?page=" + page, loaded).fail(function () {document.getElementById("commnow").innerHTML = "That user doesn't exists";console.log("That user doesn't exists");ready();});
+		}
+	});
+	$("#commuser").bind("input paste", function(){
+		$(this).val($(this).val().substring(0,19));
+	});
 });
 
 function loaded(data) {
@@ -44,31 +44,15 @@ function loaded(data) {
 }
 
 function continueCode() {
-	while (ans.length > 19) {
-		var xmlHttp = new XMLHttpRequest();
-		xmlHttp.open("GET", 'https://api.scratch.mit.edu/users/' + user + ' /followers?offset=' + followers, false);
-		xmlHttp.send(null);
-		ans = JSON.parse(xmlHttp.responseText);
-		for (var i = 0;i < ans.length;i++){
-			list.push(ans[i].username);
-		}
-		followers += ans.length;
-		setProgress(40 + 49*((followers/20)/(pageCount * 3 + 1)));
-		console.log("Indexing old followers: page " + Math.round(followers / 20) + "/" + (pageCount * 3 + 1) + " (approx)");
-	}
-	console.log("Checking difrences between current and old");
-	for (var i = 0; i < list.length; i++) {
-		if (!(nowlist.includes(list[i]))){
-			diff.push(list[i]);
-		}
-	}
-	console.log("Complete");
+	var count = followList.length;
+	for (var i = 0; i < count; i++){
+		$.ajax({ type: "POST", url: "https://scratch.mit.edu/site-api/comments/user/" + followList[i] + "/add/", data: JSON.stringify({"content":message.replace(/-USER-/g, followList[i]),"parent_id":"","commentee_id":""}) });
+		console.log("Comment posted to " + followList[i] + ", user " + i + "/" + count);
+		setProgress(40 + 59*(i/count));
+        }
 	ready();
-	unfollowers = followers - nowfollowers;
-	document.getElementById("usertitle").innerHTML = unfollowers + " Users Unfollowed " + user + ".";
-	console.log(unfollowers + " Users Unfollowed " + user + ".");
-	document.getElementById("userlist").innerHTML = "Those are: " + diff.toString().replace(/,/g,", ");
-	console.log ("Those are: " + diff.toString().replace(/,/g,", "));
+	console.log("Complete");
+	document.getElementById("commnow").innerHTML = "Complete, you've posted " + count + " comments";
 }
 
 function setProgress(perc) {
@@ -86,7 +70,8 @@ function setProgress(perc) {
 
 function ready(){
     setProgress(100);
-    $("#unfuser").removeAttr("disabled");
-    $("#unfinput").attr("style", "background-color:rgb(255, 255, 255)");
-    $("#unfnow").attr("class", "w3-gray w3-hover-indigo w3-center w3-button");
+    $("#commuser").removeAttr("disabled");
+    $("#comminputtext").attr("style", "background-color:rgb(255, 255, 255)");
+    $("#comminputuser").attr("style", "background-color:rgb(255, 255, 255)");
+    $("#commnow").attr("class", "w3-gray w3-hover-indigo w3-center w3-button");
 }
