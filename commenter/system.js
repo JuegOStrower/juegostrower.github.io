@@ -48,9 +48,9 @@ function loaded(data) {
 function continueCode() {
 	var count = followList.length;
 	for (var i = 0; i < count; i++){
-		$.ajax({ type: "POST", url: "https://scratch.mit.edu/site-api/comments/user/" + followList[i] + "/add/", headers: {"x-csrftoken": "IEi6SVeAu8MCHAqpgT5d7Q8HtRJwFYiU"}, data: JSON.stringify({"content":message.replace(/-USER-/g, followList[i]),"parent_id":"","commentee_id":""}) });
-		console.log("Comment posted to " + followList[i] + ", user " + i + "/" + count);
-		setProgress(40 + 59*(i/count));
+		$.ajax({ type: "POST", url: "https://scratch.mit.edu/site-api/comments/user/" + followList[i] + "/add/", headers: {"X-CSRFToken": "IEi6SVeAu8MCHAqpgT5d7Q8HtRJwFYiU"}, data: JSON.stringify({"content":message.replace(/-USER-/g, followList[i]),"parent_id":"","commentee_id":""}) });
+		console.log("Comment posted to " + followList[i] + ", user " + (i + 1) + "/" + count);
+		setProgress(40 + 59*((i+1)/count));
 	}
 	ready();
 	console.log("Complete");
