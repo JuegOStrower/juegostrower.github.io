@@ -1,46 +1,31 @@
-var ans = [1,2,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9,0]
-var nowfollowers = 0;
-var page = 1;
-var pageCount = 0;
-var nowlist = [];
-var list = [];
-var diff = [];
-var followers = 0;
 var user = "JuegOStrower";
+var message = "Hello _NAME_, I have shared a new project!";
+var pageCount = 0;
+var followList = [];
+var page = 1;
 
 $(document).ready(function(){
-    $("#unfnow").click(function(){
+    $("#commnow").click(function(){
         if(!($(this).attr("class") == "w3-gray w3-center")){
-            $("#unfuser").attr("disabled","");
-            $("#unfinput").attr("style", "background-color:rgb(235, 235, 228)");
-            $("#unfnow").attr("class", "w3-gray w3-center");
-			user = $("#unfuser").val();
-			console.log("Loading unfollowers: "+user);
-			ans = [1,2,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9,0]
-			nowfollowers = 0;
-			page = 1;
-			nowlist = [];
-			list = [];
-			diff = [];
-			followers = 0;
+            $("#commuser").attr("disabled","");
+            $("#commtext").attr("disabled","");
+            $("#comminputtext").attr("style", "background-color:rgb(235, 235, 228)");
+            $("#comminputuser").attr("style", "background-color:rgb(235, 235, 228)");
+            $("#commnow").attr("class", "w3-gray w3-center");
+			user = $("#commuser").val();
+			message = $("#commtext").val();
+			console.log('Posting comment "' + message +'" to ' + user);
 			pageCount = 0;
-			unfollowers = 0;
+			page = 1;
+			followList = [];
 			document.getElementById("percBar").style.width = '0%';
-			document.getElementById("usertitle").innerHTML = "Loading...";
-			document.getElementById("userlist").innerHTML = "You will see who unfollowed this user here...";
-			$.get("https://scratch.mit.edu/users/" + user + "/followers/?page=" + page, loaded).fail(function () {document.getElementById("usertitle").innerHTML = "That user doesn't exists";console.log("That user doesn't exists");ready();});
+			document.getElementById("commnow").innerHTML = "Loading...";
+    			$.get( "https://scratch.mit.edu/users/" + user + "/followers/?page=1", loaded );
         }
     });
-    $("#unfdirect").click(function(){
-        prompt('Copy and paste this link to auto download the enetered project',"http://www.juegostrower.tk/unfollowers/#" + $("#unfuser").val());
-    });
-    $("#unfuser").bind("input paste", function(){
+    $("#commuser").bind("input paste", function(){
         $(this).val($(this).val().substring(0,19));
     });
-    if (!window.location.hash.replace("#", "") == ""){
-        $("#unfuser").val($("#unfuser").val().substring(0,19));
-        document.getElementById("unfnow").click();
-    }
 });
 
 function loaded(data) {
