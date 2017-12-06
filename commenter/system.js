@@ -1,9 +1,11 @@
 var user = "JuegOStrower";
 var message = "Hello -USER-, I have shared a new project!";
 var pageCount = 0;
+var postedCount = 0;
 var followList = [];
 var page = 1;
 var token = "token";
+var count = 0;
 
 $(document).ready(function(){
 	$("#commnow").click(function(){
@@ -46,15 +48,27 @@ function loaded(data) {
 }
 
 function continueCode() {
-	var count = followList.length;
-	for (var i = 0; i < count; i++){
-		$.ajax({ type: "POST", url: "https://scratch.mit.edu/site-api/comments/user/" + followList[i] + "/add/", headers: {"X-CSRFToken": "IEi6SVeAu8MCHAqpgT5d7Q8HtRJwFYiU"}, data: JSON.stringify({"content":message.replace(/-USER-/g, followList[i]),"parent_id":"","commentee_id":""}) });
-		console.log("Comment posted to " + followList[i] + ", user " + (i + 1) + "/" + count);
-		setProgress(40 + 59*((i+1)/count));
+	count = followList.length;
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			console.log("Comment posted to " + followList[i] + ", user " + (i + 1) + "/" + count);
+			setProgress(40 + 59*((i+1)/count));
+			postedCount++;
+			if (postedCount = count){
+				ready();
+				console.log("Complete, you've posted " + count + " comments");
+				document.getElementById("commnow").innerHTML = "Complete, you've posted " + count + " comments";
+			}
+		} else {
+			document.getElementById("commnow").innerHTML = "There was an error posting the comments.";
+			thorw "There was an error posting the comments.";
+		};
 	}
-	ready();
-	console.log("Complete");
-	document.getElementById("commnow").innerHTML = "Complete, you've posted " + count + " comments";
+	XMLHttpRequest.setRequestHeader("X-CSRFToken", "IEi6SVeAu8MCHAqpgT5d7Q8HtRJwFYiU")
+	xhttp.open("POST", "https://scratch.mit.edu/site-api/comments/user/" + followList[i] + "/add/", true);
+	xhttp.send(JSON.stringify({"content":message.replace(/-USER-/g, followList[i]),"parent_id":"","commentee_id":""}));
+	console.log("Posting comment to " + followList[i] + ", user " + (i + 1) + "/" + count);
 }
 
 function setProgress(perc) {
