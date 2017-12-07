@@ -10,7 +10,7 @@ var count = 0;
 $(document).ready(function(){
 	$("#commnow").click(function(){
 		if(!($(this).attr("class") == "w3-gray w3-center")){
-			if($(this).val().length < 32){
+			if($("#commtoken").val().length < 32){
 				throw "Please put a valid CSRF";
 			}
 			$("#commuser").attr("disabled","");
