@@ -17,6 +17,7 @@ $(document).ready(function(){
 			$("#commnow").attr("class", "w3-gray w3-center");
 			user = $("#commuser").val();
 			message = $("#commtext").val();
+			token = $("#commtoken").val();
 			console.log('Posting comment "' + message +'" to ' + user);
 			pageCount = 0;
 			page = 1;
@@ -27,10 +28,20 @@ $(document).ready(function(){
 			$.get("https://scratch.mit.edu/users/" + user + "/followers/?page=" + page, loaded).fail(function () {document.getElementById("commnow").innerHTML = "That user doesn't exists"; throw "That user doesn't exists";ready();});
 		}
 	});
+	$("#tokenHelp").click(function(){
+		document.getElementById('tokenDialog').style.display='block';
+	}
 	$("#commuser").bind("input paste", function(){
 		$(this).val($(this).val().substring(0,19));
 	});
-});
+	$("#commtoken").bind("input paste", function(){
+		if ($("#this").length < 32){
+			$("#this").attr("class","w3-input w3-text-red")
+		} else {
+			$("#this").attr("class","w3-input")
+		}
+		$(this).val($(this).val().substring(0,32));
+	});});
 
 function loaded(data) {
 	var $dom = $(data);
@@ -67,7 +78,7 @@ function continueCode() {
 			}
 		};
 		xhttp.open("POST", "https://scratch.mit.edu/site-api/comments/user/" + followList[i] + "/add/", true);
-		xhttp.setRequestHeader("X-CSRFToken", "IEi6SVeAu8MCHAqpgT5d7Q8HtRJwFYiU");
+		xhttp.setRequestHeader("X-CSRFToken", token);
 		xhttp.send(JSON.stringify({"content":message.replace(/-USER-/g, followList[i]),"parent_id":"","commentee_id":""}));
 		console.log("Posting comment to " + followList[i] + ", user " + (i + 1) + "/" + count);
 	}

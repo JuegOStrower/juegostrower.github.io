@@ -9,6 +9,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   	<script src="system.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="stylesheet" href="/w3.css">
     <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-82877528-5"></script>
@@ -20,6 +21,13 @@
     </script>
   </head>
   <body>
+  <div onclick="document.getElementById('tokenDialog').style.display='none'" id="tokenDialog" class="w3-modal" style="display: none;">
+    <div class="w3-container w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
+        <span onclick="document.getElementById('tokenDialog').style.display='none'" class="w3-button w3-xlarge w3-transparent w3-display-topright" title="Cerrar">×</span>
+        <div class="w3-section">
+		<h1>What's a CSRF token?</h1>To check that you are not a robot, Scratch needs a 32 digs number to put comments. You can get it in your Scratch cookies.</div>
+     </div>
+    </div>
     <section class="w3-center w3-container w3-black w3-padding-64">
       <h1 class="project-name">Auto comment in all your followers</h1>
       <h2 class="project-tagline">A tool from <a href="/">ScratchToolKit</a>...</h2>
@@ -44,6 +52,10 @@
 					<tr id="comminputtext" style="background-color:rgb(255, 255, 255)">
 						<td>Message:</td>
 						<td><input value="Hello -USER-, I have shared a new project!" type="text" class="w3-input" style="display: inline-block; padding: 1px; color: black;width:480px" id="commtext"></td>
+					</tr>
+					<tr id="comminputtoken" style="background-color:rgb(255, 255, 255)">
+						<td>CSRF Token:<button id="tokenHelp" class="w3-btn"><i class="material-icons">help</i></button></td>
+						<td><input value="sjnxxxxx3VrSkk6BLxxxxxYGMb2xxxxx" type="text" class="w3-input" style="display: inline-block; padding: 1px; color: black;width:480px" id="commtoken"></td>
 					</tr>
 					<tr id="comminputtip" style="background-color:rgb(255, 255, 255)">
 						<td style="font-size:15px" colspan="2">Tip: Use -USER- to refer to the current user and avoid the antispam system.</td>
