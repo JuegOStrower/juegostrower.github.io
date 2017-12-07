@@ -4,7 +4,7 @@ var pageCount = 0;
 var postedCount = 0;
 var followList = [];
 var page = 1;
-var token = "token";
+var token = "sjnxxxxx3VrSkk6BLxxxxxYGMb2xxxxx";
 var count = 0;
 
 $(document).ready(function(){
@@ -12,8 +12,11 @@ $(document).ready(function(){
 		if(!($(this).attr("class") == "w3-gray w3-center")){
 			$("#commuser").attr("disabled","");
 			$("#commtext").attr("disabled","");
+			$("#commtoken").attr("disabled","");
 			$("#comminputtext").attr("style", "background-color:rgb(235, 235, 228)");
 			$("#comminputuser").attr("style", "background-color:rgb(235, 235, 228)");
+			$("#comminputoken").attr("style", "background-color:rgb(235, 235, 228)");
+			$("#comminputip").attr("style", "background-color:rgb(235, 235, 228)");
 			$("#commnow").attr("class", "w3-gray w3-center");
 			user = $("#commuser").val();
 			message = $("#commtext").val();
@@ -30,18 +33,19 @@ $(document).ready(function(){
 	});
 	$("#tokenHelp").click(function(){
 		document.getElementById('tokenDialog').style.display='block';
-	}
+	});
 	$("#commuser").bind("input paste", function(){
 		$(this).val($(this).val().substring(0,19));
 	});
 	$("#commtoken").bind("input paste", function(){
-		if ($("#this").length < 32){
-			$("#this").attr("class","w3-input w3-text-red")
+		if ($(this).val().length < 32){
+			$(this).attr("class","w3-input w3-text-red")
 		} else {
-			$("#this").attr("class","w3-input")
+			$(this).attr("class","w3-input")
 		}
 		$(this).val($(this).val().substring(0,32));
-	});});
+	});
+});
 
 function loaded(data) {
 	var $dom = $(data);
@@ -101,7 +105,10 @@ function ready(){
     setProgress(100);
     $("#commuser").removeAttr("disabled");
     $("#commtext").removeAttr("disabled");
+    $("#commtoken").removeAttr("disabled");
     $("#comminputtext").attr("style", "background-color:rgb(255, 255, 255)");
     $("#comminputuser").attr("style", "background-color:rgb(255, 255, 255)");
+    $("#comminputtoken").attr("style", "background-color:rgb(255, 255, 255)");
+    $("#comminputtip").attr("style", "background-color:rgb(255, 255, 255)");
     $("#commnow").attr("class", "w3-gray w3-hover-indigo w3-center w3-button");
 }
