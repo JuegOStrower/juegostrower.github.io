@@ -10,6 +10,9 @@ var count = 0;
 $(document).ready(function(){
 	$("#commnow").click(function(){
 		if(!($(this).attr("class") == "w3-gray w3-center")){
+			if($(this).val().length < 32){
+				throw "Please put a valid CSRF";
+			}
 			$("#commuser").attr("disabled","");
 			$("#commtext").attr("disabled","");
 			$("#commtoken").attr("disabled","");
@@ -27,7 +30,6 @@ $(document).ready(function(){
 			followList = [];
 			document.getElementById("percBar").style.width = '0%';
 			document.getElementById("commnow").innerHTML = "Loading...";
-			$.get("https://scratch.mit.edu/session/",function (data){try {token = JSON.parse(data).user.token;} catch (e){document.getElementById("commnow").innerHTML = "Please log in to Scratch first"; throw "Please log in to Scratch first";ready();}});
 			$.get("https://scratch.mit.edu/users/" + user + "/followers/?page=" + page, loaded).fail(function () {document.getElementById("commnow").innerHTML = "That user doesn't exists"; throw "That user doesn't exists";ready();});
 		}
 	});
