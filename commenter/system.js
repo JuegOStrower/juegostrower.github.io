@@ -18,8 +18,8 @@ $(document).ready(function(){
 			$("#commtoken").attr("disabled","");
 			$("#comminputtext").attr("style", "background-color:rgb(235, 235, 228)");
 			$("#comminputuser").attr("style", "background-color:rgb(235, 235, 228)");
-			$("#comminputoken").attr("style", "background-color:rgb(235, 235, 228)");
-			$("#comminputip").attr("style", "background-color:rgb(235, 235, 228)");
+			$("#comminputtoken").attr("style", "background-color:rgb(235, 235, 228)");
+			$("#comminputtip").attr("style", "background-color:rgb(235, 235, 228)");
 			$("#commnow").attr("class", "w3-gray w3-center");
 			user = $("#commuser").val();
 			message = $("#commtext").val();
