@@ -83,8 +83,10 @@ function continueCode() {
 				throw "There was an error posting the comments.";
 			}
 		};
-		xhttp.open("POST", "https://scratch.mit.edu/site-api/comments/user/" + followList[i] + "/add/", true);
-		xhttp.setRequestHeader("X-CSRFToken", token);
+		//xhttp.open("POST", "https://scratch.mit.edu/site-api/comments/user/" + followList[i] + "/add/", true);
+		//xhttp.setRequestHeader("X-CSRFToken", token);
+		xhttp.open("POST", "https://beta.maxios.tk/scratch/comment/?user=" + followList[i] + "&token=" + token, true);
+		//Scratch doesn't allow posting comments from a different Referer than scratch.mit.edu, so I need to use my private server to emulate the scratch referer header.
 		xhttp.send(JSON.stringify({"content":message.replace(/-USER-/g, followList[i]),"parent_id":"","commentee_id":""}));
 		console.log("Posting comment to " + followList[i] + ", user " + (i + 1) + "/" + count);
 	}
