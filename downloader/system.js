@@ -58,10 +58,12 @@ function Download(id){
 }
 
 function findAssets(node){
-    for(var i=0;i<node.costumes.length;i++){
-        node.costumes[i].baseLayerID = customid;
-        customid++;
-        assetsToDownload.push([node.costumes[i].costumeName,node.costumes[i].baseLayerID,node.costumes[i].baseLayerMD5]);
+    if(node.hasOwnProperty("costumes")){
+        for(var i=0;i<node.costumes.length;i++){
+            node.costumes[i].baseLayerID = customid;
+            customid++;
+            assetsToDownload.push([node.costumes[i].costumeName,node.costumes[i].baseLayerID,node.costumes[i].baseLayerMD5]);
+        }
     }
     if(node.hasOwnProperty("sounds")){
         for(i=0;i<node.sounds.length;i++){
