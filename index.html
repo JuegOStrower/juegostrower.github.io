@@ -45,9 +45,12 @@
       }
     }
     $(document).ready(function(){
-      $("#downproj,#connuser,#makeproj,#unshid,#openproj").bind("input paste", function(){
+      $("#downproj,#makeproj,#unshid,#openproj,#secretid").bind("input paste", function(){
 	      $(this).val($(this).val().replace(/\D/g,'').substring(0,10));
       });
+	  $("#connuser,#unfuser").bind("input paste", function(){
+        $(this).val($(this).val().substring(0,19));
+	  });
     })
     </script>
   </head>
@@ -266,12 +269,16 @@
             <table class="w3-table">
               <tbody>
                 <tr class="w3-text-white">
-                  <th>Scratch 3 GUI</th>
+                  <th>What is the project id</th>
                   <th><input value="181467202" type="text" class="w3-input w3-indigo" style="display: inline-block; padding: 1px; color: black; width: 110px;" id="openproj"></th>
                 </tr>
                 <tr class="w3-white">
-                  <td>Scratch 3 GUI Develop</td>
+                  <td>Scratch 3 GUI</td>
                   <td onclick="play('gui')">Play</td>
+                </tr>
+                <tr class="w3-white">
+                  <td>Scratch 3 GUI Develop</td>
+                  <td onclick="play('guidev')">Play</td>
                 </tr>
                 <tr class="w3-white">
                   <td>Scratch VM</td>
@@ -347,13 +354,36 @@
           <p>Get more info about me <a href="commenter">here</a></p>
         </div>
       </div>
-      <div class="w3-third w3-deep-purple w3-center" style="min-height:500px">
+	   <div class="w3-third w3-blue-gray w3-container" style="min-height:500px">
+        <div class="w3-padding-32 w3-center">
+          <h2>Get projects secret data</h2>
+          <p class="w3-container">Know if one project was moderated, if is nfe and the title of an unshared project</p>
+          <div class="w3-container w3-responsive">
+            <table class="w3-table">
+              <tbody>
+                <tr class="w3-text-white">
+                  <th><label for="secretid">What's the Project Id?</label></th>
+                </tr>
+                <tr class="w3-white">
+                  <td><input id="secretid" style="padding:1px" class="w3-input" type="text" value="JuegOStrower"></td>
+                  <td onclick="window.location = '/secretdata/#' + document.getElementById('secretid').value">Get!</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Get more info <a href="secretdata">here</a></p>
+        </div>
+      </div>
+    </div>
+	<div class="w3-row">
+	   <div class="w3-third w3-deep-purple w3-center" style="min-height:500px">
         <div class="w3-padding-32">
           <h2>Me!</h2>
           <p class="w3-container">Hey! I'm JuegOStrower. I like developing tools and hacks for Scracth.</p>
           <p>Get more info about me <a href="me">here</a></p>
         </div>
-      </div>    </div>
+      </div>
+	</div>
     <footer style="min-height: calc(100vh - 1740px - 331px);" class="w3-center w3-container w3-black w3-padding-16">
       <span class="site-footer-owner">This site is maintained by <a href="https://scratch.mit.edu/users/JuegOStrower">JuegOStrower</a> in Scratch. See more <a href="me">About me</a></span>
     </footer>
