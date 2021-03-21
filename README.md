@@ -1,0 +1,2 @@
+## Welcome!
+I'm making an all new website with my tools for scratch. Now, you can find the old version on https://juegostrower.github.io . The source code of the new version is not published yet. It's schuduled to by released between march and may. At this point, I removed all the old tools on the home of the website, letting only the very good ones. If you need one of the old ones, look for it on github or contact me on Scratch. When the new website is ready, the old one will be removed.

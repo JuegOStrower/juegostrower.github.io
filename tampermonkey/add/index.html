@@ -1,0 +1,30 @@
+<html>
+<head>
+<script>
+// Opera 8.0+
+if ((!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0){
+	location.href = "https://addons.opera.com/en/extensions/details/tampermonkey-beta/";
+} else if (typeof InstallTrigger !== 'undefined'){
+	location.href = "https://addons.mozilla.org/en-US/firefox/addon/tampermonkey/";
+} else if (/constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || (typeof safari !== 'undefined' && safari.pushNotification))){
+	location.href = "https://safari.tampermonkey.net/tampermonkey.safariextz";
+} else if (false || !!document.documentMode){
+	docuent.getElementById("info").innerHTML = "<h1>Error!</h1>Sorry, Tampermokey is not available for Internet Explorer";
+} else if (!(false || !!document.documentMode) && !!window.StyleMedia){
+	location.href = "https://www.microsoft.com/es-ar/store/p/tampermonkey/9nblggh5162s";
+} else if (!!window.chrome && !!window.chrome.webstore){
+	location.href = "https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo";
+} else if (!(!!window.chrome && !!window.chrome.webstore || (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0) && !!window.CSS){
+	location.href = "https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo";
+} else {
+	docuent.getElementById("info").innerHTML = "<h1>Error!</h1>Sorry, Tampermokey is not available for your browser.<br>If you think that this is an error, you can try to download Tampermokey from the <a href='https://tampermonkey.net'>oficial site</a>.";
+}
+</script>
+</head>
+<body>
+<div id="info">
+<h1>Redirecting you to Tampermokey</h1>
+</div>
+<b>Powered by @jugeOStrower</b>
+</body>
+</html>
